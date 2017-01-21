@@ -1,0 +1,27 @@
+page-tabs {
+
+	.ion-logo-bitcoin:before {
+	    content: url('../assets/img/Tabs/landing_icon.png') !important;
+	}
+
+	.ion-logo-apple:before {
+	    content: url('../assets/img/Tabs/history_icon.png') !important;
+	}
+
+	.ion-logo-angular:before {
+	    content: url('../assets/img/Tabs/festivities_icon.png') !important;
+	}
+
+	.ion-logo-buffer:before {
+	    content: url('../assets/img/Tabs/favorite_icon.png') !important;
+	}
+
+	.ion-logo-android:before {
+		content: url('../assets/img/Tabs/town_icon.png') !important;
+	}
+
+	.tab-button-text {
+		white-space:normal !important;
+	}
+
+}

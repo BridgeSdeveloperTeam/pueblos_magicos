@@ -1,0 +1,36 @@
+<!--
+  Generated template for the TownTemplate page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="{{sectionColor}}">
+  	<button ion-button icon-only (click)="backButtonTapped()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  	<button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>{{this.townDetails.nombre}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only button-clear style="width:80px;"></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding-horizontal>
+
+	<ion-list no-padding>
+		<ion-item *ngFor="let info of sectionInfo" text-wrap no-padding>
+			<img [src]="info.imagen">
+			<h1>{{info.titulo}}</h1>
+			<div>{{info.descripcion}}</div>
+		</ion-item>  
+	</ion-list>
+	<ion-fab top right>
+		<button color="transparent" ion-fab (click)="favTapped()"><img *ngIf="!isFav" src="./assets/img/Fav/fav.png"><img *ngIf="isFav" [src]="activeFav"></button>
+	</ion-fab>
+</ion-content>

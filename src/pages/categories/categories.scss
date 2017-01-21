@@ -1,0 +1,23 @@
+page-categories {
+	.item .label, .item .item-inner, .list {
+		margin:0px;
+		padding:0px !important;
+	}
+
+	.segment-ios {
+		padding: 5px 10px;
+	}
+
+	.top-minus-margin {
+		margin-top: -5px;
+	}
+
+	.first-item {
+		margin:0px;
+	}
+
+	.custom-toolbar {
+		padding:0px !important;
+		min-height: 42px !important;
+	}
+}

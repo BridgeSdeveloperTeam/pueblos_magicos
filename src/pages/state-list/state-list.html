@@ -1,0 +1,31 @@
+<!--
+  Generated template for the StateList page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="{{sectionColor}}">
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>{{title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only button-clear style="width:80px;"></button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-padding>
+  	<img [src]="sectionImage">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	
+	<ion-list>
+		<ion-item *ngFor="let state of states" (click)="stateSelected(state)">
+			<img [src]="state.imagen">
+			<h2>{{state.nombre}}</h2>
+		</ion-item>  
+	</ion-list>
+</ion-content>

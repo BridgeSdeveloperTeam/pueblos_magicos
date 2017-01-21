@@ -1,0 +1,56 @@
+<!--
+  Generated template for the Categories page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+	<button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>{{title}}</ion-title>
+    <ion-buttons end>
+	    <button ion-button icon-only (click)="searchButtonTapped()">
+	      <ion-icon name="search"></ion-icon>
+	    </button>
+	</ion-buttons>
+  </ion-navbar>
+  <ion-toolbar class="custom-toolbar">
+		<ion-segment [(ngModel)]="segmentModel" (ionChange)="changeActivities()" color="primary" no-margin>
+		    <ion-segment-button value="actividades">
+		    	Actividades
+		    </ion-segment-button>
+		    <ion-segment-button value="regiones">
+		    	Regiones
+		    </ion-segment-button>
+		</ion-segment>
+	</ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+	<ion-list no-lines [hidden]="!showingActivities">
+		<ion-item *ngFor="let number of ['1','2','3','4','5'];let first = first;" no-padding (click)="activitySelected(number)" class="top-minus-margin" [class.first-item]="first">
+			<div class="row" style="padding:0;">
+				<div class="col">
+					<img src="./assets/img/Categories/actividad{{number}}.png">
+				</div>
+			</div>	
+		</ion-item>  
+	</ion-list>
+
+	<ion-list no-lines [hidden]="showingActivities">
+		<ion-item *ngFor="let number of ['1','2','3','4','5'];let first = first;" no-padding (click)="regionSelected(number)" 
+		class="top-minus-margin" [class.first-item]="first">
+			<div class="row" style="padding:0;">
+				<div class="col">
+					<img src="./assets/img/Categories/region{{number}}.png">
+				</div>
+			</div>
+		</ion-item>  
+	</ion-list>
+
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-menu [content]="content" persistent="true">
+
+  <ion-content>
+    <div class="user-info-container">
+      <img src="./assets/img/photo_placeholder.png">
+      <div text-wrap>{{user.nombre + " " +user.apellido }}</div>
+    </div>
+    <ion-list no-lines>
+      <button menuClose ion-item *ngFor="let page of pages" (click)="openPage(page)">
+        <ion-avatar item-left>
+          <img [src]="page.icon" class="avatar-squared">
+        </ion-avatar>
+          {{page.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

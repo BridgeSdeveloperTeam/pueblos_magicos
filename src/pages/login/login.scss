@@ -1,0 +1,47 @@
+page-login {
+
+	.content {
+		background-image: url('../assets/img/back_login.jpg');
+		background-size:100% 100%;
+	}
+
+	scroll-content {
+	   overflow-y: auto;
+	}
+	.label, div {
+
+		color:white !important;
+	}
+
+	.item {
+		background-color:transparent;
+	}
+
+	.big-padding {
+
+		padding: 0 10%;
+	}
+
+	.logo-padding {
+
+		padding: 0 15%;
+	}
+
+	.empty-item {
+		height: 1px;
+		min-height: 1px;
+	}
+
+	.small-logo {
+		width:60px;
+	}
+
+	ion-title {
+		padding: 0 0 1px !important;
+	}
+
+	.toolbar {
+		min-height: 40px;
+	}
+
+}

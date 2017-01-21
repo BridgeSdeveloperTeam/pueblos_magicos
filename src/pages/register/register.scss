@@ -1,0 +1,29 @@
+page-register {
+	.content {
+		background-image: url('../assets/img/back_register.jpg');
+		background-size:100% 100%;
+	}
+
+	.big-padding {
+
+		padding: 0 10%;
+	}
+
+	.item {
+		background-color:transparent;
+	}
+
+	.label, div, h1 {
+
+		color:white !important;
+	}
+
+	h1 {
+		font-size: 4rem;
+	}
+
+	.empty-item {
+		height: 1px;
+		min-height: 1px;
+	}
+}

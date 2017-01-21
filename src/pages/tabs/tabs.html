@@ -1,0 +1,9 @@
+
+<ion-tabs color="primary">
+  <ion-tab [root]="tab1Root" [rootParams]="townDetails" tabTitle="Pueblo Mágico" tabIcon="logo-android"></ion-tab>
+  <ion-tab [root]="tab2Root" [rootParams]="{'townDetails':townDetails, 'sectionInfo':whatToDo}" tabTitle="¿Qué hacer?" tabIcon="logo-bitcoin"></ion-tab>
+  <ion-tab [root]="tab3Root" [rootParams]="{'townDetails':townDetails, 'sectionInfo':history}" tabTitle="Historia" tabIcon="logo-apple"></ion-tab>
+  <ion-tab [root]="tab4Root" [rootParams]="{'townDetails':townDetails, 'sectionInfo':festivities}" tabTitle="Festividades" tabIcon="logo-angular"></ion-tab>
+  <ion-tab [root]="tab5Root" [rootParams]="{'townDetails':townDetails, 'sectionInfo':featured}" tabTitle="No te lo pierdas" tabIcon="logo-buffer" class="featured-tab"></ion-tab>
+
+</ion-tabs>
