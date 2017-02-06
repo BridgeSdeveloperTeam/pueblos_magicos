@@ -32,7 +32,7 @@
 
 <ion-content>
 
-	<ion-list no-lines [hidden]="!showingActivities">
+	<ion-list no-lines [hidden]="!showingActivities" no-bounce has-bouncing="false">
 		<ion-item *ngFor="let number of ['1','2','3','4','5'];let first = first;" no-padding (click)="activitySelected(number)" class="top-minus-margin" [class.first-item]="first">
 			<div class="row" style="padding:0;">
 				<div class="col">
@@ -42,7 +42,7 @@
 		</ion-item>  
 	</ion-list>
 
-	<ion-list no-lines [hidden]="showingActivities">
+	<ion-list no-lines [hidden]="showingActivities" no-bounce has-bouncing="false">
 		<ion-item *ngFor="let number of ['1','2','3','4','5'];let first = first;" no-padding (click)="regionSelected(number)" 
 		class="top-minus-margin" [class.first-item]="first">
 			<div class="row" style="padding:0;">

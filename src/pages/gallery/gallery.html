@@ -21,8 +21,11 @@
 
 <ion-content padding>
 	<ion-row wrap>
-	  <ion-col width-50 *ngFor="let file_uri of images">
-	  	<img [src]="file_uri">
+	  <ion-col width-50 *ngFor="let file_uri of images" (click)="photoSelected(file_uri)">
+	  	<div class="gallery-container">
+	  		<img [src]="file_uri">
+	  	</div>
+	  	
 	  </ion-col>
 	</ion-row>
 </ion-content>

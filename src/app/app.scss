@@ -20,7 +20,7 @@
 
 .user-info-container {
 	background-color:color($colors, primary);
-	height: 150px;
+	height: 170px;
 	text-align:center;
 	color:white;
 	padding: 20px 5px;
@@ -28,9 +28,11 @@
 }
 
 .user-info-container img {
-	width:70px;
+	width:80px;
+	height: 80px;
 	border-radius:50%;
 	margin-bottom:5px;
+	margin-top:10px;
 }
 
 .bar-button:hover, .bar-button .activated {
@@ -50,3 +52,10 @@ ion-app._gmaps_cdv_ .nav-decor{
 	width: 100%;
 	background-color:black;
 }
+
+.app-side-menu .scroll-content{
+	padding-top:0px !important;
+	overflow-y: auto;
+}
+
+

@@ -15,20 +15,74 @@ import { RestBase } from './rest-base';
 export class StateList extends RestBase {
 
 	servicePath : string;
+	stateNames: Array<String>;
 
 	constructor(public http: Http) {
 		super();
-		this.servicePath = "/fakeStateData.json";
+		this.servicePath = "/estados_region";
+		//Local file
+		this.http.get('./assets/Estados.json').map(res => res).subscribe( res => {
+			let jsonResponse = res.json();
+			this.stateNames = <String[]>jsonResponse["Estados"];	
+		});
 	}
 
-	loadStatesByActivity(activityId:string): Observable<any> {
-		return this.http.get( this.apiUrl + this.servicePath)
+	loadStatesByActivity(activity:string): Observable<any> {
+		return this.http.get( this.apiUrl + this.servicePath + "/" + this.getActivityIdfForActivityNumber(activity))
 	  		.map(res => res);
 	}
 
-	loadStatesByRegion(regionId:string): Observable<any> {
-		return this.http.get(this.apiUrl + this.servicePath)
+	loadStatesByRegion(region:string): Observable<any> {
+		return this.http.get(this.apiUrl + this.servicePath + "/" + this.getRegionIdForActivityNumber(region))
 	  		.map(res => res);
+	}
+
+	getStateNames():Array<String> {
+		return this.stateNames;
+	}
+
+	private getActivityIdfForActivityNumber(activity:string): string {
+		switch(activity) {
+			case "1":
+				//Ecoturismo
+				return "1";
+			case "2": 
+				//Religioso
+				return "4";
+			case "3":
+				//Sol y playa
+				return "5";
+			case "4":
+				//cultural
+				return "2";
+			case "5":
+				//Aventura
+				return "3";
+			default:
+				return "0";
+		}
+	}
+
+	private getRegionIdForActivityNumber(region:string): string {
+		switch(region) {
+			case "1":
+				//Pacifico
+				return "4";
+			case "2": 
+				//Norte
+				return "1";
+			case "3":
+				//Golfo
+				return "3";
+			case "4":
+				//Sur
+				return "2";
+			case "5":
+				//Centro
+				return "5";
+			default:
+				return "0";
+		}
 	}
 
 }

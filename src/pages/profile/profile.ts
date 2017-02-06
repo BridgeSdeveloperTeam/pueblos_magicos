@@ -1,28 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { StateList } from '../../providers/state-list';
-
 import { User } from '../../models/user';
 
 /*
-  Generated class for the Register page.
+  Generated class for the Profile page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-register',
-  templateUrl: 'register.html'
+  selector: 'page-profile',
+  templateUrl: 'profile.html'
 })
-export class RegisterPage {
+export class ProfilePage {
 
-	stateNames: Array<String>;
-	user:User
-
-	constructor(public navCtrl: NavController, public navParams: NavParams, private stateList: StateList) {
-		this.stateNames = stateList.getStateNames();
-		console.log(this.stateNames);
+	user:User;
+  	constructor(public navCtrl: NavController, public navParams: NavParams) {
 		this.user = <User>{
 	      nombre: "Juan",
 	      apellido: "Ramos De La Cruz",
@@ -32,6 +26,6 @@ export class RegisterPage {
 	      edad: 32,
 	      genero: "M"
 	    };
-	}
+  	}
 
 }

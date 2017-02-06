@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar, Splashscreen, Camera, Crop } from 'ionic-native';
 
 import { LoginPage } from '../pages/login/login';
 import { CategoriesPage } from '../pages/categories/categories';
 import { TownListPage } from '../pages/town-list/town-list';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { SectionAppearance } from '../providers/section-appearance';
 import { Favorites } from '../providers/favorites';
@@ -29,7 +30,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Mi Perfil', icon: "./assets/img/MenuIcons/icon_profile.png", component: LoginPage },
+      { title: 'Mi Perfil', icon: "./assets/img/MenuIcons/icon_profile.png", component: ProfilePage },
       { title: 'Actividades', icon: "./assets/img/MenuIcons/icon_actividad.png", component: CategoriesPage },
       { title: 'Regiones', icon: "./assets/img/MenuIcons/icon_compass.png", component: CategoriesPage },
       { title: 'Mis Lugares Favoritos', icon: "./assets/img/MenuIcons/icon_heart.png", component: TownListPage },
@@ -40,7 +41,10 @@ export class MyApp {
       nombre: "Juan",
       apellido: "Ramos De La Cruz",
       imagen: "",
-      correo: ""
+      correo: "",
+      estado: "",
+      edad: 32,
+      genero: "M"
     };
 
     this.menu.swipeEnable(false);
@@ -53,6 +57,30 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleLightContent();
       Splashscreen.hide();
+    });
+  }
+
+  avatarClicked() {
+     var options = {
+        destinationType: Camera.DestinationType.FILE_URI,
+        // In this app, dynamically set the picture source, Camera or photo gallery
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        encodingType: Camera.EncodingType.JPEG,
+        mediaType: Camera.MediaType.PICTURE,
+        allowEdit: false,
+        correctOrientation: true  //Corrects Android orientation quirks
+    };
+    Camera.getPicture(options).then((imageData) => {
+
+      Crop.crop( imageData ,{quality: 50}).then((newImage) => {
+          this.user.imagen = newImage;
+        }, (error) => {
+          console.error("Error cropping image", error) 
+      });
+     //this.user.imagen = imageData;
+    }, (err) => {
+     // Handle error
+     console.log(err);
     });
   }
 

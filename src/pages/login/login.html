@@ -13,8 +13,8 @@
 		<ion-list inset>
 
 		    <ion-item>
-			    <ion-label>Usuario</ion-label>
-			    <ion-input type="text"></ion-input>
+			    <ion-label>Email</ion-label>
+			    <ion-input type="email"></ion-input>
 		    </ion-item>
 
 		    <ion-item>
@@ -31,8 +31,19 @@
 	<button ion-button color="primary" (click)="loginButtonTapped()">Ingresar</button>
 	
 	<div margin-top>
-		<div>¿Olvidaste tus datos de Inicio de sesión? Obtén ayuda.</div>
-		<div>ó</div>
+		<div tappable (click)="forgotPasswordTapped()">¿Olvidaste tus datos de Inicio de sesión? Obtén ayuda.</div>
+		<ion-row class="big-padding">
+			<ion-col>
+				<div class="separator" style="background-color:white;"></div>
+			</ion-col>
+			<ion-col width-10>
+				<div>ó</div>
+			</ion-col>
+			<ion-col>
+				<div class="separator" style="background-color:white;"></div>
+			</ion-col>
+		</ion-row>
+		
 		<div>Iniciar sesión:</div>
 		<ion-grid>
 		  <ion-row center>

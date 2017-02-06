@@ -41,8 +41,11 @@ export class LandingPage extends ColoredSection {
 		this.townDetails = <TownDetails>navParams.data;
 		this.activeFav = sectionAppearance.getCurrentFavIcon();
 		this.dividerColor = sectionAppearance.getCurrentHexColor();
-		this.isFav = this.favorites.isFavorite(this.townDetails);
 
+	}
+
+	ionViewWillEnter () {
+		this.isFav = this.favorites.isFavorite(this.townDetails);
 	}
 	// Load map only after view is initialize
 	//ngAfterViewInit() {

@@ -33,11 +33,11 @@ export class TownTemplatePage extends ColoredSection{
 		this.townDetails = <TownDetails>navParams.data.townDetails;
 		this.activeFav = sectionAppearance.getCurrentFavIcon();
 		this.dividerColor = sectionAppearance.getCurrentHexColor();
-		this.isFav = this.favorites.isFavorite(this.navCtrl.parent.viewCtrl.instance.townDetails);
-		
+
 	}
 
 	ionViewWillEnter() {
+		this.isFav = this.favorites.isFavorite(this.townDetails);
 		let elements = document.getElementsByClassName('item-inner');
 		for(var i=0;i<elements.length;i++) {
 			let element = <HTMLElement>elements[i];

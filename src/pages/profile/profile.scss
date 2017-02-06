@@ -1,12 +1,21 @@
-page-register {
+page-profile {
+
 	.content {
 		background-image: url('../assets/img/back_register.jpg');
 		background-size:100% 100%;
 	}
 
-	.big-padding {
+	.user-info-container {
+		height: 170px;
+		padding: 20px 5px;
+	}
 
-		padding: 0 10%;
+	.user-info-container img {
+		width:120px;
+		height: 120px;
+		border-radius:50%;
+		margin-bottom:5px;
+		margin-top:10px;
 	}
 
 	.item {
@@ -14,20 +23,6 @@ page-register {
 	}
 
 	.label, div, h1 {
-
 		color:white !important;
-	}
-
-	h1 {
-		font-size: 4rem;
-	}
-
-	.empty-item {
-		height: 1px;
-		min-height: 1px;
-	}
-
-	.item-select {
-		padding-left:0px;
 	}
 }

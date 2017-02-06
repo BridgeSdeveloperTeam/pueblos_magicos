@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 
 import { State } from '../../models/state';
 
@@ -24,8 +24,9 @@ export class CategoriesPage {
 	title: string;
 	segmentModel: string;
 	showingActivities: boolean;
+	loading: any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private stateList: StateList, private sectionAppearance: SectionAppearance) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, private stateList: StateList, private sectionAppearance: SectionAppearance, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 
 		if(this.navParams.get("regiones") === true) {
 			this.segmentModel = "regiones";
@@ -37,6 +38,7 @@ export class CategoriesPage {
 			this.showingActivities = true;
 			
 		}
+
 	}
 
 	changeActivities() {
@@ -51,19 +53,36 @@ export class CategoriesPage {
 	}
 
 	activitySelected(number: string) {
-		this.stateList.loadStatesByActivity(number).subscribe(response => {
+		this.loading = this.loadingCtrl.create({
+			content:''
+		});
+		this.loading.present();
+		this.stateList.loadStatesByActivity(number).subscribe(
+		response => {
+			
 			this.sectionAppearance.setAppearanceForActivity(number);
 	      	let states = this.handleResponse(response);	
 	      	this.showStates(states);
+	    },
+	    err => {
+	    	this.handleError();
 	    });
 	}
 
 	regionSelected(number: string) {
+		this.loading = this.loadingCtrl.create({
+			content:''
+		});
+		this.loading.present();
 		this.stateList.loadStatesByRegion(number).subscribe(response => {
+			
 			this.sectionAppearance.setAppearanceForRegion(number);
 			let states = this.handleResponse(response);
 	      	this.showStates(states);
 	      	
+	    },
+	    err => {
+	    	this.handleError();
 	    });
 	}
 
@@ -74,9 +93,18 @@ export class CategoriesPage {
 
 	//private
 	private handleResponse(response:any) : State[] {
+		this.loading.dismiss().catch(() => {});
 		let jsonResponse = response.json();
-		if(jsonResponse.status == 200) {
-			return <State[]>jsonResponse.data;
+		console.log(jsonResponse);
+		if(response.status == 200) {
+			var filteredResults = [];
+			for(let i=0;i<jsonResponse.length;i++) {
+				let state = jsonResponse[i];
+				if(state.pueblos && state.pueblos.length > 0) {
+					filteredResults.push(state);
+				}
+			}
+			return <State[]>filteredResults;
 		}else {
 			return null;
 		}
@@ -85,7 +113,19 @@ export class CategoriesPage {
 	private showStates(states: State[]) {
 		if(states != null) {
 			this.navCtrl.push(StateListPage, {states});
+		}else {
+			this.handleError();
 		}
+	}
+
+	private handleError() {
+		this.loading.dismiss().catch(() => {});
+		let alert = this.alertCtrl.create({
+			title: 'Lo sentimos',
+			subTitle: 'Ocurrio un error al consultar la información',
+			buttons: ['OK']
+		});
+		alert.present();
 	}
 
 }

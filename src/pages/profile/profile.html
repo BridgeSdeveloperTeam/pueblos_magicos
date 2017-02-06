@@ -1,36 +1,44 @@
 <!--
-  Generated template for the Register page.
+  Generated template for the Profile page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header no-border>
+<ion-header>
 
-  <ion-navbar color="transparent">
+  <ion-navbar color="primary">
+  	<button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Mi Perfil</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only button-clear style="width:40px;"></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding-top text-center>
+<ion-content padding text-center>
+	
 	<div class="big-padding">
-		<h1>¡Bienvenido!</h1>
+		<div class="user-info-container" tapable (click)="avatarClicked()">
+	      <img [src]="user.imagen || './assets/img/photo_placeholder.png'">
+	    </div>
 
 		<ion-list inset>
-
 		    <ion-item>
 			    <ion-label>Nombre</ion-label>
-			    <ion-input type="text"></ion-input>
+			    <ion-input type="text" [(ngModel)]="user.nombre"></ion-input>
 		    </ion-item>
 		    <ion-item>
 			    <ion-label>Apellido</ion-label>
-			    <ion-input type="text"></ion-input>
+			    <ion-input type="text" [(ngModel)]="user.apellido"></ion-input>
 		    </ion-item>
 			<ion-item>
 			    <ion-label>Email</ion-label>
-			    <ion-input type="email"></ion-input>
+			    <ion-input type="email" [(ngModel)]="user.email"></ion-input>
 		    </ion-item>
-		    <ion-item>
+		  	<ion-item>
 			    <ion-label>Estado</ion-label>
 			    <ion-select [(ngModel)]="user.estado">
 				    <ion-option *ngFor="let stateName of stateNames" value="{{stateName}}">{{stateName}}</ion-option>
@@ -38,7 +46,7 @@
 		    </ion-item>
 		    <ion-item>
 			    <ion-label>Edad</ion-label>
-			    <ion-input type="tel"></ion-input>
+			    <ion-input type="tel" [(ngModel)]="user.nombre"></ion-input>
 		    </ion-item>
 		    <ion-item>
 			    <ion-label>Género</ion-label>
@@ -47,20 +55,11 @@
 				    <ion-option value="F">Femenino</ion-option>
 				</ion-select>
 		    </ion-item>
-		    <ion-item>
-			    <ion-label>Contraseña</ion-label>
-			    <ion-input type="password"></ion-input>
-		    </ion-item>
-		    <ion-item>
-			    <ion-label>Repetir contraseña</ion-label>
-			    <ion-input type="password"></ion-input>
-		    </ion-item>
-		  
 		 	<ion-item class="empty-item">
 		 	</ion-item>
-
 		</ion-list>
 
 		<button ion-button color="primary">Crear cuenta</button>
 	</div>
+
 </ion-content>

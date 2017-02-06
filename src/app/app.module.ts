@@ -12,6 +12,7 @@ import { LandingPage } from '../pages/landing/landing';
 import { TownTemplatePage } from '../pages/town-template/town-template';
 import { SearchPage } from '../pages/search/search';
 import { GalleryPage } from '../pages/gallery/gallery';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { StateList } from '../providers/state-list';
 import { SectionAppearance } from '../providers/section-appearance';
@@ -32,8 +33,8 @@ import { ServiceLocator } from '../models/service-locator';
     LandingPage,
     TownTemplatePage,
     SearchPage,
-    GalleryPage
-
+    GalleryPage,
+    ProfilePage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -53,8 +54,8 @@ import { ServiceLocator } from '../models/service-locator';
     LandingPage,
     TownTemplatePage,
     SearchPage,
-    GalleryPage
-
+    GalleryPage,
+    ProfilePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler },
     StateList,

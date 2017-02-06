@@ -24,7 +24,7 @@
 	
 	<ion-list>
 		<ion-item *ngFor="let state of states" (click)="stateSelected(state)">
-			<img [src]="state.imagen">
+			<img [src]="getPhotoUrl(state.imagen)">
 			<h2>{{state.nombre}}</h2>
 		</ion-item>  
 	</ion-list>

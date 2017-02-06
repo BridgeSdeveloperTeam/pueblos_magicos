@@ -5,6 +5,7 @@ import { ColoredSection } from '../../models/colored-section';
 
 import { SectionAppearance } from '../../providers/section-appearance';
 
+import { PhotoViewer } from 'ionic-native';
 /*
   Generated class for the Gallery page.
 
@@ -24,5 +25,8 @@ export class GalleryPage extends ColoredSection {
 		this.images = this.navParams.get("images");
 	}
 
+	photoSelected(file_uri) {
+		PhotoViewer.show("http://placekitten.com/1200/1200");
 
+	}
 }

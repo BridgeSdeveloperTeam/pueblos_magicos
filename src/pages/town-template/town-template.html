@@ -7,12 +7,16 @@
 <ion-header>
 
   <ion-navbar color="{{sectionColor}}">
-  	<button ion-button icon-only (click)="backButtonTapped()">
-      <ion-icon name="arrow-back"></ion-icon>
-    </button>
-  	<button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+  	<ion-buttons left (click)="backButtonTapped()">
+		<button ion-button icon-only >
+	      <ion-icon name="arrow-back"></ion-icon>
+	    </button>
+    </ion-buttons>
+     <ion-buttons left>
+  		<button ion-button icon-only menuToggle>
+	      <ion-icon name="menu"></ion-icon>
+	    </button>
+    </ion-buttons>
     <ion-title text-center>{{this.townDetails.nombre}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only button-clear style="width:80px;"></button>
@@ -31,6 +35,9 @@
 		</ion-item>  
 	</ion-list>
 	<ion-fab top right>
-		<button color="transparent" ion-fab (click)="favTapped()"><img *ngIf="!isFav" src="./assets/img/Fav/fav.png"><img *ngIf="isFav" [src]="activeFav"></button>
+		<button color="transparent" ion-fab (click)="favTapped()" style="padding:0px;">
+			<img [hidden]="isFav" src="./assets/img/Fav/fav.png">
+			<img [hidden]="!isFav" [src]="activeFav">
+		</button>
 	</ion-fab>
 </ion-content>

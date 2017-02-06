@@ -25,10 +25,12 @@ export class StateListPage extends ColoredSection {
 
   @ViewChild(Content) content: Content;
 	states: State[];
+  baseUrl: string;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance) {
 		super(navCtrl, navParams, sectionAppearance);
 		this.states = navParams.get("states");
+    this.baseUrl = "https://admin.pueblosmagicosapp.com/public/";
 
   }
 
@@ -48,4 +50,8 @@ export class StateListPage extends ColoredSection {
   	let townList: TownOverview[] = <TownOverview[]>state.pueblos;
   	this.navCtrl.push(TownListPage, {townList});
 	}
+
+  getPhotoUrl(photoPath) {
+    return this.baseUrl + photoPath;
+  }
 }

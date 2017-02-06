@@ -23,10 +23,12 @@ import { TabsPage } from '../tabs/tabs';
 export class TownListPage extends ColoredSection {
 
 	townList: TownOverview[];
+	baseUrl: string;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private townInfo: TownInfo) {
 		super(navCtrl,navParams, sectionAppearance);
 		this.townList = navParams.get("townList");
+		this.baseUrl = "https://admin.pueblosmagicosapp.com/public/";
 	}
 
 	ionViewWillEnter() {
@@ -52,6 +54,10 @@ export class TownListPage extends ColoredSection {
 		}else {
 			return null;
 		}
+	}
+
+	getPhotoUrl(photoPath) {
+		return this.baseUrl + photoPath;
 	}
 
 
