@@ -4,8 +4,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ColoredSection } from '../../models/colored-section';
 
 import { SectionAppearance } from '../../providers/section-appearance';
+import { ImagePath } from '../../providers/image-path';
 
-import { PhotoViewer } from 'ionic-native';
+import { PhotoViewer, GoogleAnalytics } from 'ionic-native';
+
 /*
   Generated class for the Gallery page.
 
@@ -20,13 +22,18 @@ export class GalleryPage extends ColoredSection {
 
 	images: Array<string>;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private imagePath:ImagePath) {
 		super(navCtrl,navParams,sectionAppearance);
 		this.images = this.navParams.get("images");
 	}
 
 	photoSelected(file_uri) {
-		PhotoViewer.show("http://placekitten.com/1200/1200");
+		PhotoViewer.show(this.imagePath.getFullPath(file_uri));
 
 	}
+
+	ionViewDidEnter () {
+		GoogleAnalytics.trackView("Galeria");
+	}
+
 }

@@ -20,7 +20,9 @@
 	    </button>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button icon-only button-clear style="width:80px;"></button>
+      <button ion-button icon-only (click)="mapTapped()">
+      	 <ion-icon name="md-map" ></ion-icon>
+      </button>
     </ion-buttons>
     
   </ion-navbar>
@@ -29,7 +31,7 @@
 
 <ion-content>
 
-	<img [src]="townDetails.imagen">
+	<img [src]="imagePath.getFullPath(townDetails.imagen)">
 
 	<div padding>
 		<h2>{{townDetails.nombre}}</h2>
@@ -39,8 +41,6 @@
 		</div>
 		<div class="separator" [style.background-color]="dividerColor"></div>
 	</div>
-	
-	<div #map id="map"></div>
 
 	<ion-fab top right>
 		<button color="transparent" ion-fab (click)="favTapped()" style="padding:0px;">

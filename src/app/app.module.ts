@@ -13,11 +13,14 @@ import { TownTemplatePage } from '../pages/town-template/town-template';
 import { SearchPage } from '../pages/search/search';
 import { GalleryPage } from '../pages/gallery/gallery';
 import { ProfilePage } from '../pages/profile/profile';
+import { MapPage } from '../pages/map/map';
 
 import { StateList } from '../providers/state-list';
 import { SectionAppearance } from '../providers/section-appearance';
 import { TownInfo } from '../providers/town-info';
 import { Favorites } from '../providers/favorites';
+import { ImagePath } from '../providers/image-path';
+import { RestUser } from '../providers/rest-user';
 
 import { ServiceLocator } from '../models/service-locator';
 
@@ -34,7 +37,8 @@ import { ServiceLocator } from '../models/service-locator';
     TownTemplatePage,
     SearchPage,
     GalleryPage,
-    ProfilePage
+    ProfilePage,
+    MapPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -55,13 +59,16 @@ import { ServiceLocator } from '../models/service-locator';
     TownTemplatePage,
     SearchPage,
     GalleryPage,
-    ProfilePage
+    ProfilePage,
+    MapPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler },
     StateList,
     SectionAppearance,
     TownInfo,
-    Favorites
+    Favorites,
+    ImagePath,
+    RestUser
     ]
 })
 export class AppModule {

@@ -4,6 +4,9 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { SectionAppearance } from '../../providers/section-appearance';
 import { Favorites } from '../../providers/favorites';
+import { ImagePath } from '../../providers/image-path';
+
+import { GoogleAnalytics } from 'ionic-native';
 
 import { TownDetails } from '../../models/town-details';
 import { ColoredSection } from '../../models/colored-section';
@@ -25,15 +28,16 @@ export class TownTemplatePage extends ColoredSection{
 	isFav: boolean;
 	dividerColor: string;
 	townDetails: TownDetails;
+	tabName: string;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private favorites: Favorites) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private favorites: Favorites, private imagePath:ImagePath) {
 		super(navCtrl,navParams,sectionAppearance);
 		
 		this.sectionInfo = navParams.data.sectionInfo;
 		this.townDetails = <TownDetails>navParams.data.townDetails;
+		this.tabName = navParams.data.tabSection;
 		this.activeFav = sectionAppearance.getCurrentFavIcon();
 		this.dividerColor = sectionAppearance.getCurrentHexColor();
-
 	}
 
 	ionViewWillEnter() {
@@ -45,6 +49,10 @@ export class TownTemplatePage extends ColoredSection{
 		}
 	}
 
+	ionViewDidEnter () {
+		GoogleAnalytics.trackView(this.tabName);
+	}
+
 	favTapped() {
 		this.isFav = !this.isFav;
 		this.navCtrl.parent.viewCtrl.instance.favoriteButtonTapped(this.isFav);
@@ -53,5 +61,6 @@ export class TownTemplatePage extends ColoredSection{
 	backButtonTapped() {
 		this.navCtrl.parent.viewCtrl.instance.goBack();
 	}
+
 
 }

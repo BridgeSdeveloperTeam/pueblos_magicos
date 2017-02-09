@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 
 import { TownDetails } from '../models/town-details';
+import { RestBase } from './rest-base';
 /*
   Generated class for the Favorites provider.
 
@@ -11,12 +12,14 @@ import { TownDetails } from '../models/town-details';
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class Favorites {
+export class Favorites extends RestBase {
 
 	private favorites: Array<TownDetails>;
 	private storage;
 	
 	constructor(public http: Http) {
+
+		super();
   		this.storage = new Storage();
 		this.storage.get("favorites").then((val) => {
 			if(val == null) {
@@ -29,9 +32,23 @@ export class Favorites {
 	}
 
 	setFavorite(town: TownDetails) {
+
 		this.favorites.push(town);
 		this.saveFavoritesToStorage();
 	}
+
+
+/*	setFavoriteLocal(town: TownDetails) {
+
+		this.favorites.push(town);
+		this.saveFavoritesToStorage();
+	}
+
+	setFavorite(town) : Observable<any>  {
+		let servicePath = "/hacer_favorito"
+		return this.http.get( this.apiUrl + servicePath + "/" + this.getActivityIdfForActivityNumber(activity))
+	  		.map(res => res);
+	}*/
 
 	removeFavorite(town: TownDetails) {
 		let index = this.iterateAndReturnIndex(town);

@@ -9,6 +9,8 @@ import { Favorites } from '../../providers/favorites';
 import { ColoredSection } from '../../models/colored-section';
 import { TownDetails } from '../../models/town-details';
 
+import { GoogleAnalytics } from 'ionic-native';
+
 /*
   Generated class for the Tabs tabs.
 
@@ -36,6 +38,7 @@ export class TabsPage extends ColoredSection {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private favorites: Favorites)  {
     super(navCtrl,navParams,sectionAppearance);
+    
     this.townDetails = <TownDetails>navParams.get("townDetails");
     this.whatToDo = this.townDetails.queHacer;
     this.history = this.townDetails.historia;
@@ -47,7 +50,9 @@ export class TabsPage extends ColoredSection {
   public favoriteButtonTapped(add) {
     if(add) {
       this.favorites.setFavorite(this.townDetails);
+      GoogleAnalytics.trackEvent("Favoritos", "Tap", this.townDetails.nombre);
     }else {
+      GoogleAnalytics.trackEvent("Remover Favoritos", "Tap", this.townDetails.nombre);
       this.favorites.removeFavorite(this.townDetails);
     }
     

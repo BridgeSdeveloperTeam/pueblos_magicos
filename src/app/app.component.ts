@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
-import { StatusBar, Splashscreen, Camera, Crop } from 'ionic-native';
+import { StatusBar, Splashscreen, Camera, Crop, GoogleAnalytics, Push, Transfer } from 'ionic-native';
 
 import { LoginPage } from '../pages/login/login';
 import { CategoriesPage } from '../pages/categories/categories';
@@ -9,13 +9,16 @@ import { ProfilePage } from '../pages/profile/profile';
 
 import { SectionAppearance } from '../providers/section-appearance';
 import { Favorites } from '../providers/favorites';
+import { ImagePath } from '../providers/image-path';
+import { RestUser } from '../providers/rest-user';
+
 
 import { User } from '../models/user';
 
 
 @Component({
   templateUrl: 'app.html',
-  providers: [SectionAppearance, Favorites]
+  providers: [SectionAppearance, Favorites, ImagePath, RestUser]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -25,7 +28,7 @@ export class MyApp {
   pages: Array<{title: string, icon: string, component: any}>;
   user: User;
 
-  constructor(public platform: Platform, public menu: MenuController, public favorites: Favorites) {
+  constructor(public platform: Platform, public menu: MenuController, public favorites: Favorites, public restUser: RestUser) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -57,6 +60,27 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleLightContent();
       Splashscreen.hide();
+
+      GoogleAnalytics.startTrackerWithId('UA-90564283-1')
+      .then(() => {
+        console.log('Google analytics is ready now');
+        GoogleAnalytics.trackView("Login");
+       // Tracker is ready
+       // You can now track pages or set additional information such as AppVersion or UserId
+      })
+      .catch(e => console.log('Error starting GoogleAnalytics', e));
+
+      Push.init({
+      android: {
+             senderID: '72637084292'
+         },
+         ios: {
+             alert: 'true',
+             badge: true,
+             sound: 'false'
+         },
+         windows: {}
+      });
     });
   }
 
@@ -74,10 +98,29 @@ export class MyApp {
 
       Crop.crop( imageData ,{quality: 50}).then((newImage) => {
           this.user.imagen = newImage;
+          let registeredUser = this.restUser.getUser();
+
+          var options = {
+            fileKey: "file",
+            fileName: "photo"+ registeredUser.id +".jpg",
+            chunkedMode: false,
+            mimeType: "multipart/form-data",
+            params : {'id': registeredUser.id}
+          };
+          
+          this.restUser.savePhotoUrl(newImage);
+          let fileTransfer = new Transfer();
+
+          fileTransfer.upload(newImage, "http://admin.pueblosmagicosapp.com/public/app/usuario/cargar_imagen", options).then(data => {
+            console.log(data);
+          }, err => {
+            console.log(err);
+          });
+
         }, (error) => {
           console.error("Error cropping image", error) 
       });
-     //this.user.imagen = imageData;
+     
     }, (err) => {
      // Handle error
      console.log(err);
@@ -86,6 +129,7 @@ export class MyApp {
 
   openPage(page) {
     if(page.component == TownListPage) {
+      GoogleAnalytics.trackView("Favoritos");
       let townList = this.favorites.getFavorites();
       this.nav.setRoot(page.component, {'townList':townList});
     }else if(page.title === "Regiones") {

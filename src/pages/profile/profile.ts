@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { GoogleAnalytics } from 'ionic-native';
+
 import { User } from '../../models/user';
 
 /*
@@ -27,5 +29,9 @@ export class ProfilePage {
 	      genero: "M"
 	    };
   	}
+
+  	ionViewDidEnter () {
+		GoogleAnalytics.trackView("Perfil");
+	}
 
 }

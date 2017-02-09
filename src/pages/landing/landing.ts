@@ -4,19 +4,14 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ColoredSection } from '../../models/colored-section';
 import { TownDetails } from '../../models/town-details';
 
-import { Platform } from 'ionic-angular';
-
 import { SectionAppearance } from '../../providers/section-appearance';
 import { Favorites } from '../../providers/favorites';
+import { ImagePath } from '../../providers/image-path';
 
 import { GalleryPage } from '../gallery/gallery';
+import { MapPage } from '../map/map';
 
-import {
- GoogleMap,
- GoogleMapsEvent,
- GoogleMapsLatLng,
- GoogleMapsMarkerOptions
-} from 'ionic-native';
+import { GoogleAnalytics } from 'ionic-native';
 
 /*
   Generated class for the Landing page.
@@ -31,12 +26,11 @@ import {
 export class LandingPage extends ColoredSection {
 
 	townDetails: TownDetails;
-	map: GoogleMap;
 	activeFav: string;
 	isFav: boolean;
 	dividerColor: string;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, protected sectionAppearance: SectionAppearance, private favorites: Favorites) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private favorites: Favorites, private imagePath: ImagePath) {
 		super(navCtrl,navParams,sectionAppearance);
 		this.townDetails = <TownDetails>navParams.data;
 		this.activeFav = sectionAppearance.getCurrentFavIcon();
@@ -50,37 +44,9 @@ export class LandingPage extends ColoredSection {
 	// Load map only after view is initialize
 	//ngAfterViewInit() {
 	ionViewDidEnter () {
-		if(this.platform.is("cordova")) {
-			this.loadMap();
-		}
-		
+		GoogleAnalytics.trackView("Detalle pueblo/Mapa");
 	}
 
-	private loadMap() {
-		// create a new map by passing HTMLElement
-		let element: HTMLElement = document.getElementById('map');
-
-		let latLngComponents = this.townDetails.ubicacion.split(',');
-		let latitude = parseFloat(latLngComponents[0]);
-		let longitude = parseFloat(latLngComponents[1]);
-		// create LatLng object	
-		let latLng: GoogleMapsLatLng = new GoogleMapsLatLng(latitude,longitude);
-
-		this.map = new GoogleMap(element, {
-			'camera': {
-	            'latLng': latLng,
-	            'zoom': 15
-	        }
-        });
-
-		this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
-            // create new marker
-			let markerOptions: GoogleMapsMarkerOptions = {
-				position: latLng
-			};
-			this.map.addMarker(markerOptions);
-        });	
-	}
 
 	favTapped() {
 		this.isFav = !this.isFav;
@@ -88,12 +54,17 @@ export class LandingPage extends ColoredSection {
 	}
 
 	galleryTapped() {
-		this.navCtrl.push(GalleryPage, {"images": this.townDetails.galeria});
+		this.navCtrl.push(GalleryPage, {"images": this.townDetails.galería});
 	}
 
 	backButtonTapped() {
 		this.navCtrl.parent.viewCtrl.instance.goBack();
 	}
 
+	mapTapped() {
+		console.log(this.townDetails.latitud);
+		console.log(this.townDetails.longitud);
+		this.navCtrl.push(MapPage, {"townDetails":this.townDetails}, {"animate":false});
+	}
 
 }

@@ -23,7 +23,7 @@
 	<ion-row wrap>
 	  <ion-col width-50 *ngFor="let file_uri of images" (click)="photoSelected(file_uri)">
 	  	<div class="gallery-container">
-	  		<img [src]="file_uri">
+	  		<img [src]="imagePath.getFullPath(file_uri)">
 	  	</div>
 	  	
 	  </ion-col>

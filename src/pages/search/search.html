@@ -20,12 +20,12 @@
 
 
 <ion-content>
-	<ion-searchbar placeholder="Nombre del Pueblo" (ionInput)="getItems($event)"></ion-searchbar>
+	<ion-searchbar placeholder="Nombre del Pueblo" [(ngModel)]="searchInput" debounce="500" (ionInput)="performSearch($event)"></ion-searchbar>
 
 	<ion-list>
 	  <ion-item *ngFor="let town of townList" text-wrap (click)="townSelected(town)">
 	    <ion-thumbnail item-left>
-	      <img [src]="town.imagen">
+	      <img [src]="imagePath.getFullPath(town.imagen)">
 	    </ion-thumbnail>
 	    <h2>{{town.nombre}}</h2>
 	    <p>{{town.descripcion}}</p>

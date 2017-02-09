@@ -3,8 +3,9 @@ export interface TownDetails {
 	nombre: string;
 	imagen: string;
 	descripcion: string;
-	ubicacion: string;
-	galeria: Array<string>;
+	latitud: string;
+	longitud: string;
+	galería: Array<string>;
 
 	queHacer: Array<Object>;
 	historia: Array<Object>;

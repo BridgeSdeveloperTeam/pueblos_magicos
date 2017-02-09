@@ -24,7 +24,7 @@
 <ion-list>
   <ion-item *ngFor="let town of townList" text-wrap (click)="townSelected(town)">
     <ion-thumbnail item-left>
-      <img [src]="getPhotoUrl(town.imagen)">
+      <img [src]="imagePath.getFullPath(town.imagen)">
     </ion-thumbnail>
     <h2>{{town.nombre}}</h2>
     <p style="max-height: 50px;">{{town.descripcion}}</p>

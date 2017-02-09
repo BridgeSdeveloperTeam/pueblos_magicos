@@ -29,7 +29,7 @@
 
 	<ion-list no-padding>
 		<ion-item *ngFor="let info of sectionInfo" text-wrap no-padding>
-			<img [src]="info.imagen">
+			<img [src]="imagePath.getFullPath(info.imagen)">
 			<h1>{{info.titulo}}</h1>
 			<div>{{info.descripcion}}</div>
 		</ion-item>  

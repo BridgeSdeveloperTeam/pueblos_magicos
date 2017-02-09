@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { GoogleAnalytics } from 'ionic-native';
 
 import { State } from '../../models/state';
 
 import { StateList } from '../../providers/state-list';
 import { SectionAppearance } from '../../providers/section-appearance';
+import { RestUser } from '../../providers/rest-user';
 
 import { StateListPage } from '../state-list/state-list';
 import { SearchPage } from '../search/search';
@@ -26,7 +28,7 @@ export class CategoriesPage {
 	showingActivities: boolean;
 	loading: any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private stateList: StateList, private sectionAppearance: SectionAppearance, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, private stateList: StateList, private sectionAppearance: SectionAppearance, public alertCtrl: AlertController, public loadingCtrl: LoadingController, private restUser:RestUser) {
 
 		if(this.navParams.get("regiones") === true) {
 			this.segmentModel = "regiones";
@@ -38,7 +40,13 @@ export class CategoriesPage {
 			this.showingActivities = true;
 			
 		}
+		console.log("categories");
+		console.log(this.restUser.getUser());
 
+	}
+
+	ionViewDidEnter () {
+		GoogleAnalytics.trackView("Menu Actividades/Regiones");
 	}
 
 	changeActivities() {
@@ -67,6 +75,8 @@ export class CategoriesPage {
 	    err => {
 	    	this.handleError();
 	    });
+
+	    GoogleAnalytics.trackEvent("Actividades", "Tap", this.stateList.getActivityNamefForActivityNumber(number));
 	}
 
 	regionSelected(number: string) {
@@ -84,6 +94,8 @@ export class CategoriesPage {
 	    err => {
 	    	this.handleError();
 	    });
+
+	    GoogleAnalytics.trackEvent("Regiones", "Tap", this.stateList.getRegionNameForRegionNumber(number));
 	}
 
 	searchButtonTapped () {
@@ -95,7 +107,7 @@ export class CategoriesPage {
 	private handleResponse(response:any) : State[] {
 		this.loading.dismiss().catch(() => {});
 		let jsonResponse = response.json();
-		console.log(jsonResponse);
+	
 		if(response.status == 200) {
 			var filteredResults = [];
 			for(let i=0;i<jsonResponse.length;i++) {

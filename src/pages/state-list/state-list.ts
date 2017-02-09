@@ -6,9 +6,12 @@ import { TownListPage } from '../town-list/town-list';
 
 import { SectionAppearance } from '../../providers/section-appearance';
 
+import { GoogleAnalytics } from 'ionic-native';
+
 import { State } from '../../models/state';
 import { TownOverview } from '../../models/townOverview';
 import { ColoredSection } from '../../models/colored-section';
+import { ImagePath } from '../../providers/image-path';
 
 
 /*
@@ -25,12 +28,10 @@ export class StateListPage extends ColoredSection {
 
   @ViewChild(Content) content: Content;
 	states: State[];
-  baseUrl: string;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private imagePath: ImagePath) {
 		super(navCtrl, navParams, sectionAppearance);
 		this.states = navParams.get("states");
-    this.baseUrl = "https://admin.pueblosmagicosapp.com/public/";
 
   }
 
@@ -44,14 +45,13 @@ export class StateListPage extends ColoredSection {
 
   ionViewDidEnter() {
     this.content.resize();
+    GoogleAnalytics.trackView("Listado estados");
   }
 
   stateSelected(state:State) {
+    GoogleAnalytics.trackEvent("Estados", "Tap", state.nombre);
   	let townList: TownOverview[] = <TownOverview[]>state.pueblos;
   	this.navCtrl.push(TownListPage, {townList});
 	}
 
-  getPhotoUrl(photoPath) {
-    return this.baseUrl + photoPath;
-  }
 }

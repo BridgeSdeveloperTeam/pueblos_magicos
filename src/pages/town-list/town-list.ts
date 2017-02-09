@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 
 import { TownOverview } from '../../models/townOverview';
 import { TownDetails } from '../../models/town-details';
@@ -7,6 +7,9 @@ import { ColoredSection } from '../../models/colored-section';
 
 import { SectionAppearance } from '../../providers/section-appearance';
 import { TownInfo } from '../../providers/town-info';
+import { ImagePath } from '../../providers/image-path';
+
+import { GoogleAnalytics } from 'ionic-native';
 
 import { TabsPage } from '../tabs/tabs';
 
@@ -23,12 +26,16 @@ import { TabsPage } from '../tabs/tabs';
 export class TownListPage extends ColoredSection {
 
 	townList: TownOverview[];
-	baseUrl: string;
+	loading:any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private townInfo: TownInfo) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private townInfo: TownInfo, private imagePath:ImagePath, private alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 		super(navCtrl,navParams, sectionAppearance);
 		this.townList = navParams.get("townList");
-		this.baseUrl = "https://admin.pueblosmagicosapp.com/public/";
+		console.log(this.townList);
+	}
+
+	ionViewDidEnter () {
+		GoogleAnalytics.trackView("Listado Pueblos");
 	}
 
 	ionViewWillEnter() {
@@ -40,24 +47,48 @@ export class TownListPage extends ColoredSection {
 	}
 
 	townSelected(town) {
-		this.townInfo.loadTownDetails(town.id).subscribe(response => {
-			let townDetails = this.handleResponse(response);
-			this.navCtrl.push(TabsPage, {townDetails}, {"animate": false});
-		});
+		GoogleAnalytics.trackEvent("Pueblos", "Tap", town.nombre);
+		this.presentLoadingController();
+
+		this.townInfo.loadTownDetails(town.id).subscribe(
+			(response) => {
+				this.dismissLoadingController();
+				let townDetails = this.handleResponse(response);
+				if(townDetails.nombre != undefined) {
+					this.navCtrl.push(TabsPage, {townDetails});
+				}else {
+					let alert = this.alertCtrl.create({
+						title: 'Lo sentimos',
+						subTitle: 'Ocurrio un error al consultar la información',
+						buttons: ['OK']
+					});
+					alert.present();
+				}
+			},
+			(error) => {
+				this.dismissLoadingController();
+			}
+		);
 	}
 
+	private presentLoadingController() {
+		this.loading = this.loadingCtrl.create({
+			content:''
+		});
+		this.loading.present();
+	}
+
+	private dismissLoadingController() {
+		this.loading.dismiss();
+	};
 
 	private handleResponse(response:any) : TownDetails {
 		let jsonResponse = response.json();
-		if(jsonResponse.status == 200) {
-			return <TownDetails>jsonResponse.data;
+		if(response.status == 200 && jsonResponse.nombre) {
+			return <TownDetails>jsonResponse;
 		}else {
 			return null;
 		}
-	}
-
-	getPhotoUrl(photoPath) {
-		return this.baseUrl + photoPath;
 	}
 
 

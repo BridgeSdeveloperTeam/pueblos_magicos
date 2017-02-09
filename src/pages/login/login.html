@@ -8,28 +8,31 @@
 <ion-content padding text-center no-bounce has-bouncing="false">
 
 	<img class="logo-padding" src="./assets/img/logo.png">
-	<div class="big-padding">
 
-		<ion-list inset>
+	<form [formGroup]="loginFormGroup" (ngSubmit)="submitForm()">
+		<div class="big-padding">
 
-		    <ion-item>
-			    <ion-label>Email</ion-label>
-			    <ion-input type="email"></ion-input>
-		    </ion-item>
+			<ion-list inset>
 
-		    <ion-item>
-			    <ion-label>Contraseña</ion-label>
-			    <ion-input type="password"></ion-input>
-		    </ion-item>
-		  
-		 	<ion-item class="empty-item">
-		 	</ion-item>
+			    <ion-item>
+				    <ion-label>Email</ion-label>
+				    <ion-input type="email" formControlName="correo"></ion-input>
+			    </ion-item>
 
-		</ion-list>
-	</div>
+			    <ion-item>
+				    <ion-label>Contraseña</ion-label>
+				    <ion-input type="password" formControlName="password"></ion-input>
+			    </ion-item>
+			  
+			 	<ion-item class="empty-item">
+			 	</ion-item>
 
-	<button ion-button color="primary" (click)="loginButtonTapped()">Ingresar</button>
-	
+			</ion-list>
+		</div>
+
+		<button type="submit" ion-button color="primary">Ingresar</button>
+	</form>
+
 	<div margin-top>
 		<div tappable (click)="forgotPasswordTapped()">¿Olvidaste tus datos de Inicio de sesión? Obtén ayuda.</div>
 		<ion-row class="big-padding">
@@ -48,8 +51,12 @@
 		<ion-grid>
 		  <ion-row center>
 		  	<ion-col offset></ion-col>
-		    <ion-col><img class="small-logo" src="./assets/img/facebook_logo.png"></ion-col>
-		    <ion-col><img class="small-logo" src="./assets/img/google_logo.png"></ion-col>
+		    <ion-col tappable (click)="facebookButtonTapped()">
+		    	<img class="small-logo" src="./assets/img/facebook_logo.png">
+		    </ion-col>
+		    <ion-col tappable (click)="googleButtonTapped()">
+		    	<img class="small-logo" src="./assets/img/google_logo.png">
+		    </ion-col>
 		    <ion-col offset></ion-col>
 		  </ion-row>
 		</ion-grid>

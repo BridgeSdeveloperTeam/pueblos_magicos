@@ -16,51 +16,54 @@
 	<div class="big-padding">
 		<h1>¡Bienvenido!</h1>
 
-		<ion-list inset>
+		<form [formGroup]="user" (ngSubmit)="submitForm()">
+			<ion-list inset>
 
-		    <ion-item>
-			    <ion-label>Nombre</ion-label>
-			    <ion-input type="text"></ion-input>
-		    </ion-item>
-		    <ion-item>
-			    <ion-label>Apellido</ion-label>
-			    <ion-input type="text"></ion-input>
-		    </ion-item>
-			<ion-item>
-			    <ion-label>Email</ion-label>
-			    <ion-input type="email"></ion-input>
-		    </ion-item>
-		    <ion-item>
-			    <ion-label>Estado</ion-label>
-			    <ion-select [(ngModel)]="user.estado">
-				    <ion-option *ngFor="let stateName of stateNames" value="{{stateName}}">{{stateName}}</ion-option>
-				</ion-select>
-		    </ion-item>
-		    <ion-item>
-			    <ion-label>Edad</ion-label>
-			    <ion-input type="tel"></ion-input>
-		    </ion-item>
-		    <ion-item>
-			    <ion-label>Género</ion-label>
-			    <ion-select [(ngModel)]="user.genero">
-				    <ion-option value="M">Masculino</ion-option>
-				    <ion-option value="F">Femenino</ion-option>
-				</ion-select>
-		    </ion-item>
-		    <ion-item>
-			    <ion-label>Contraseña</ion-label>
-			    <ion-input type="password"></ion-input>
-		    </ion-item>
-		    <ion-item>
-			    <ion-label>Repetir contraseña</ion-label>
-			    <ion-input type="password"></ion-input>
-		    </ion-item>
-		  
-		 	<ion-item class="empty-item">
-		 	</ion-item>
+			    <ion-item>
+				    <ion-label>Nombre</ion-label>
+				    <ion-input type="text" formControlName="nombre"></ion-input>
+			    </ion-item>
+			    <ion-item>
+				    <ion-label>Apellido</ion-label>
+				    <ion-input type="text" formControlName="apellido"></ion-input>
+			    </ion-item>
+				<ion-item>
+				    <ion-label>Email</ion-label>
+				    <ion-input type="email" formControlName="correo"></ion-input>
+			    </ion-item>
+			    <ion-item>
+				    <ion-label>Estado</ion-label>
+				    <ion-select formControlName="estado">
+					    <ion-option *ngFor="let state of stateArray" value="{{state.id}}">{{state.nombre}}</ion-option>
+					</ion-select>
+			    </ion-item>
+			    <ion-item>
+				    <ion-label>Edad</ion-label>
+				    <ion-input type="tel" formControlName="edad"></ion-input>
+			    </ion-item>
+			    <ion-item>
+				    <ion-label>Género</ion-label>
+				    <ion-select formControlName="genero">
+					    <ion-option value="1">Femenino</ion-option>
+					    <ion-option value="2">Masculino</ion-option>
+					</ion-select>
+			    </ion-item>
+			    <ion-item>
+				    <ion-label>Contraseña</ion-label>
+				    <ion-input type="password" formControlName="password"></ion-input>
+			    </ion-item>
+			    <ion-item>
+				    <ion-label>Repetir contraseña</ion-label>
+				    <ion-input type="password" formControlName="repeatedPassword"></ion-input>
+			    </ion-item>
+			  
+			 	<ion-item class="empty-item">
+			 	</ion-item>
 
-		</ion-list>
+			</ion-list>
 
-		<button ion-button color="primary">Crear cuenta</button>
+			<button type="submit" ion-button color="primary">Crear cuenta</button>
+		</form>
+		
 	</div>
 </ion-content>
