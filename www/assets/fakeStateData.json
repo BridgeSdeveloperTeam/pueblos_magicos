@@ -1,0 +1,94 @@
+{
+	"status" : 200, 
+	"data": [
+		{
+			"id": "5",
+			"nombre": "Campeche",
+			"imagen" : "./assets/img/estado_dummy.png",
+			"pueblos": [
+				{
+					"id" : "8",
+					"nombre": "Palizada",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				},
+				{
+					"id" : "9",
+					"nombre": "Candelaria",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				},
+				{
+					"id" : "10",
+					"nombre": "San Francisco de Campeche",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				},
+				{
+					"id" : "11",
+					"nombre": "Tenabo",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				}]
+		},
+		{
+			"id": "6",
+			"nombre": "Chiapas",
+			"imagen" : "./assets/img/estado_dummy2.png",
+			"pueblos": [
+				{
+					"id" : "8",
+					"nombre": "Palizada",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				},
+				{
+					"id" : "9",
+					"nombre": "Candelaria",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				},
+				{
+					"id" : "10",
+					"nombre": "San Francisco de Campeche",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				},
+				{
+					"id" : "11",
+					"nombre": "Tenabo",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				}]
+		}, {
+			"id": "7",
+			"nombre": "Quintanaroo",
+			"imagen" : "./assets/img/estado_dummy3.png",
+			"pueblos": [
+				{
+					"id" : "8",
+					"nombre": "Palizada",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				},
+				{
+					"id" : "9",
+					"nombre": "Candelaria",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				},
+				{
+					"id" : "10",
+					"nombre": "San Francisco de Campeche",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				},
+				{
+					"id" : "11",
+					"nombre": "Tenabo",
+					"imagen": "./assets/img/pueblo_dummy.png",
+					"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+				}]
+		}
+	]
+}

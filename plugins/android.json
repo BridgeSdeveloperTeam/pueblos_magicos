@@ -1,0 +1,70 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com-sarriaroman-photoviewer": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-crop": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "148862198951838",
+            "APP_NAME": "Pueblos Mágicos",
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-google-analytics": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-googlemaps": {
+            "API_KEY_FOR_ANDROID": "AIzaSyBYpVv6B8HEzrpNzOpvzURDvbUxXYpx93c",
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-googleplus": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        }
+    },
+    "dependent_plugins": {
+        "com.googlemaps.ios": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{
+	"status" : 200, 
+	"data": {
+			"id": "5",
+			"nombre": "Palizada",
+			"imagen" : "./assets/img/pueblo_dummy.png",
+			"descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"ubicacion": "18.254649, -92.091309",
+			"galeria": ["./assets/img/pueblo_dummy.png", "./assets/img/estado_dummy.png", "./assets/img/estado_dummy2.png", "./assets/img/estado_dummy3.png", "./assets/img/pueblo_dummy.png"],
+			"historia": [{
+				"imagen": "./assets/img/pueblo_dummy.png",
+				"titulo": "Historia",
+				"descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			}],
+			"queHacer": [{
+				"imagen": "./assets/img/pueblo_dummy.png",
+				"titulo": "Restaurantes",
+				"descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			},{
+				"imagen": "./assets/img/pueblo_dummy.png",
+				"titulo": "Ecoturismo",
+				"descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			}],
+			"festividades" : [{
+				"imagen": "./assets/img/pueblo_dummy.png",
+				"titulo": "Fiestas de San Jacinto",
+				"descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			}],
+			"recomendado": [{
+				"imagen": "./assets/img/pueblo_dummy.png",
+				"titulo": "Cascadas de Cola de caballo",
+				"descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+			}]
+		
+			
+	}
+}
