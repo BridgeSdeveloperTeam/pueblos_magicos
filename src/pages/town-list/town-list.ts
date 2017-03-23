@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, ModalController } from 'ionic-angular';
 
 import { TownOverview } from '../../models/townOverview';
 import { TownDetails } from '../../models/town-details';
@@ -11,6 +11,7 @@ import { ImagePath } from '../../providers/image-path';
 
 import { GoogleAnalytics } from 'ionic-native';
 
+import { TownSplashPage } from '../town-splash/town-splash';
 import { TabsPage } from '../tabs/tabs';
 
 /*
@@ -28,10 +29,9 @@ export class TownListPage extends ColoredSection {
 	townList: TownOverview[];
 	loading:any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private townInfo: TownInfo, private imagePath:ImagePath, private alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private townInfo: TownInfo, private imagePath:ImagePath, private alertCtrl: AlertController, public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
 		super(navCtrl,navParams, sectionAppearance);
 		this.townList = navParams.get("townList");
-		console.log(this.townList);
 	}
 
 	ionViewDidEnter () {
@@ -55,7 +55,13 @@ export class TownListPage extends ColoredSection {
 				this.dismissLoadingController();
 				let townDetails = this.handleResponse(response);
 				if(townDetails.nombre != undefined) {
-					this.navCtrl.push(TabsPage, {townDetails});
+					if(townDetails.splashart !== null) {
+						let splashModal = this.modalCtrl.create(TownSplashPage, { townDetails });
+   						splashModal.present();
+					}else {
+						this.navCtrl.push(TabsPage, { townDetails });
+					}
+					
 				}else {
 					let alert = this.alertCtrl.create({
 						title: 'Lo sentimos',
@@ -79,7 +85,7 @@ export class TownListPage extends ColoredSection {
 	}
 
 	private dismissLoadingController() {
-		this.loading.dismiss();
+		this.loading.dismiss().catch(() => {});
 	};
 
 	private handleResponse(response:any) : TownDetails {

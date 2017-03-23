@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Rx';
 import { Storage } from '@ionic/storage';
 
 import { TownDetails } from '../models/town-details';
@@ -31,35 +32,41 @@ export class Favorites extends RestBase {
 	     });
 	}
 
-	setFavorite(town: TownDetails) {
-
+	setFavorite(town: TownDetails, userId) : Observable<any>  {
+		let servicePath = "/hacer_favorito";
 		this.favorites.push(town);
 		this.saveFavoritesToStorage();
-	}
-
-
-/*	setFavoriteLocal(town: TownDetails) {
-
-		this.favorites.push(town);
-		this.saveFavoritesToStorage();
-	}
-
-	setFavorite(town) : Observable<any>  {
-		let servicePath = "/hacer_favorito"
-		return this.http.get( this.apiUrl + servicePath + "/" + this.getActivityIdfForActivityNumber(activity))
+		return this.http.get( this.apiUrl + servicePath + "/" + userId + "/" + town.id )
 	  		.map(res => res);
-	}*/
+	}
 
-	removeFavorite(town: TownDetails) {
+	removeFavorite(town: TownDetails, userId): Observable<any> {
 		let index = this.iterateAndReturnIndex(town);
 		if(index>=0) {
 			this.favorites.splice(index, 1);
 			this.saveFavoritesToStorage();
 		}
+		let servicePath = "/borrar_favorito";
+		return this.http.get( this.apiUrl + servicePath + "/" + userId + "/" + town.id )
+	  		.map(res => res);
 	}
 
 	getFavorites() : Array<TownDetails> {
 		return this.favorites;
+	}
+
+	getFavoritesRest(userId) {
+		let servicePath = "/get_favoritos";
+		this.http.get( this.apiUrl + servicePath + "/" + userId ).map(res => res).subscribe(
+			(res) => {
+				this.favorites = res.json();
+				this.saveFavoritesToStorage();
+			},
+			(err) => {
+				console.log(err);
+			}
+		);
+	
 	}
 
 	isFavorite(town: TownDetails)  {

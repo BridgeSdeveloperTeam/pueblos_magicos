@@ -29,6 +29,7 @@ export class LandingPage extends ColoredSection {
 	activeFav: string;
 	isFav: boolean;
 	dividerColor: string;
+	showGallery: boolean;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private favorites: Favorites, private imagePath: ImagePath) {
 		super(navCtrl,navParams,sectionAppearance);
@@ -40,6 +41,7 @@ export class LandingPage extends ColoredSection {
 
 	ionViewWillEnter () {
 		this.isFav = this.favorites.isFavorite(this.townDetails);
+		this.showGallery = (this.townDetails.galería && this.townDetails.galería.length>0 ) ? true : false;
 	}
 	// Load map only after view is initialize
 	//ngAfterViewInit() {
@@ -62,8 +64,6 @@ export class LandingPage extends ColoredSection {
 	}
 
 	mapTapped() {
-		console.log(this.townDetails.latitud);
-		console.log(this.townDetails.longitud);
 		this.navCtrl.push(MapPage, {"townDetails":this.townDetails}, {"animate":false});
 	}
 

@@ -25,21 +25,21 @@ export class RestUser extends RestBase {
 	constructor(public http: Http) {
 		super();
 		this.storage = new Storage();
-		console.log(this.storage);
 		this.storage.get("user").then((val) => {
 			if(val == null) {
-				this.user = <User>{};
+				this.user = new User();
 			}else{
 				this.user = <User>val;
 			}
-			console.log("user in rest");
-			console.log(this.user);
-	       	
 	    });
 	}
 
 	getUser() {
 		return this.user;
+	}
+
+	getUserPromise() {
+		return this.storage.get("user");
 	}
 
 	registerUser(user:User): Observable<any> {
@@ -50,7 +50,14 @@ export class RestUser extends RestBase {
 	}
 
 	private buildRegisterParameters(user:User):string {
-		return user.correo + "/" + user.nombre + "/" + user.apellido + "/" + user.password + "/" + user.estado + "/" + user.edad + "/" + user.genero;
+		return user.correo + "/" + user.nombre + "/" + user.apellido + "/" + user.password + "/" + user.estado_id + "/" + user.edad + "/" + user.genero_id;
+	}
+
+	registerUserSocial(firstName, lastName, email): Observable<any> {
+		//login_redes/nombre_Aqui/apellido_aqui/correo_aqui
+		let servicePath = "/login_redes";
+		return this.http.get( this.apiUrl + servicePath + "/" + firstName + "/" + lastName + "/" + email)
+	  		.map(res => res);
 	}
 
 	loginUser(email:string, password:string): Observable<any> {
@@ -59,6 +66,22 @@ export class RestUser extends RestBase {
 	  		.map(res => res);
 	}
 
+	updateUser(user:User): Observable<any> {
+		///id_aqui/email_aqui/nombre_aqui/apellido_aqui/estado_id/edad_aqui/genero_id
+		let servicePath = "/actualizar_datos_usuario";
+		return this.http.get( this.apiUrl + servicePath + "/" + this.buildUpdateParameters(user))
+	  		.map(res => res);
+	}
+
+	private buildUpdateParameters(user) {
+		return user.id + "/" + user.email + "/" + user.nombre + "/" + user.apellido + "/" + user.estado_id + "/" + user.edad + "/" + user.genero_id;
+	}
+
+	forgotPassword(email:string): Observable<any> {
+		let servicePath = "/recuperar_contra";
+		return this.http.get( this.apiUrl + servicePath + "/" + email )
+	  		.map(res => res);
+	}
 
 	saveUserToStorage(user:User) {
 		this.storage.set("user", user);
@@ -66,8 +89,23 @@ export class RestUser extends RestBase {
 	}
 
 	savePhotoUrl(photoUrl) {
-		this.user.imagen = photoUrl;
+		this.user.foto_perfil = photoUrl;
 		this.saveUserToStorage(this.user);
 	}
+
+	clearStorage() {
+  		this.storage.clear().then((val) => {
+			this.user = <User>{};
+	    });
+  	}
+
+  	logId(id: string) {
+  		let servicePath = "/logs";
+		return this.http.get( this.apiUrl + servicePath + "/" + id)
+	  		.map(res => res).subscribe((res) => {},
+			(err) => {
+				console.log(err);
+			});
+  	}
 
 }

@@ -29,9 +29,12 @@
 
 	<ion-list no-padding>
 		<ion-item *ngFor="let info of sectionInfo" text-wrap no-padding>
-			<img [src]="imagePath.getFullPath(info.imagen)">
-			<h1>{{info.titulo}}</h1>
-			<div>{{info.descripcion}}</div>
+			<img [src]="imagePath.getFullPath(info.imagen)" class="more-margin">
+			<h1 class="more-margin">{{info.titulo}}</h1>
+			<div class="more-margin">{{info.descripcion}}</div>
+			<div class="gallery-container" tappable (click)="moreTapped(info)" *ngIf="checkCompanies(info)">
+				<img src="./assets/img/quehacer.png">
+			</div>
 		</ion-item>  
 	</ion-list>
 	<ion-fab top right>

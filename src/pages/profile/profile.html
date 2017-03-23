@@ -21,45 +21,47 @@
 <ion-content padding text-center>
 	
 	<div class="big-padding">
-		<div class="user-info-container" tapable (click)="avatarClicked()">
-	      <img [src]="user.imagen || './assets/img/photo_placeholder.png'">
+		<div class="user-info-container">
+	      <img [src]="getPhotoUrl() || './assets/img/photo_placeholder.png'" tapable (click)="avatarClicked()">
 	    </div>
 
-		<ion-list inset>
-		    <ion-item>
-			    <ion-label>Nombre</ion-label>
-			    <ion-input type="text" [(ngModel)]="user.nombre"></ion-input>
-		    </ion-item>
-		    <ion-item>
-			    <ion-label>Apellido</ion-label>
-			    <ion-input type="text" [(ngModel)]="user.apellido"></ion-input>
-		    </ion-item>
-			<ion-item>
-			    <ion-label>Email</ion-label>
-			    <ion-input type="email" [(ngModel)]="user.email"></ion-input>
-		    </ion-item>
-		  	<ion-item>
-			    <ion-label>Estado</ion-label>
-			    <ion-select [(ngModel)]="user.estado">
-				    <ion-option *ngFor="let stateName of stateNames" value="{{stateName}}">{{stateName}}</ion-option>
-				</ion-select>
-		    </ion-item>
-		    <ion-item>
-			    <ion-label>Edad</ion-label>
-			    <ion-input type="tel" [(ngModel)]="user.edad"></ion-input>
-		    </ion-item>
-		    <ion-item>
-			    <ion-label>Género</ion-label>
-			    <ion-select [(ngModel)]="user.genero">
-				    <ion-option value="M">Masculino</ion-option>
-				    <ion-option value="F">Femenino</ion-option>
-				</ion-select>
-		    </ion-item>
-		 	<ion-item class="empty-item">
-		 	</ion-item>
-		</ion-list>
+	    <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+			<ion-list inset>
+			    <ion-item>
+				    <ion-label>Nombre</ion-label>
+				    <ion-input type="text" formControlName="nombre"></ion-input>
+			    </ion-item>
+			    <ion-item>
+				    <ion-label>Apellido</ion-label>
+				    <ion-input type="text" formControlName="apellido"></ion-input>
+			    </ion-item>
+				<ion-item>
+				    <ion-label>Email</ion-label>
+				    <ion-input type="email" formControlName="correo"></ion-input>
+			    </ion-item>
+			  	<ion-item>
+				    <ion-label>Estado</ion-label>
+				    <ion-select formControlName="estado_id">
+					    <ion-option *ngFor="let state of stateArray" value="{{state.id}}">{{state.nombre}}</ion-option>
+					</ion-select>
+			    </ion-item>
+			    <ion-item>
+				    <ion-label>Edad</ion-label>
+				    <ion-input type="tel" formControlName="edad"></ion-input>
+			    </ion-item>
+			    <ion-item>
+				    <ion-label>Género</ion-label>
+				    <ion-select formControlName="genero_id">
+				    	<ion-option value="1">Femenino</ion-option>
+					    <ion-option value="2">Masculino</ion-option>
+					</ion-select>
+			    </ion-item>
+			 	<ion-item class="empty-item">
+			 	</ion-item>
+			</ion-list>
 
-		<button ion-button color="primary">Actualizar</button>
+			<button type="submit" ion-button color="primary">Actualizar</button>
+		</form>
 	</div>
 
 </ion-content>

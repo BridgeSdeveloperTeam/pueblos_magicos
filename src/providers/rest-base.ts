@@ -4,7 +4,7 @@ export class RestBase {
 
 	constructor() {
 		//this.apiUrl =  "./assets";
-		this.apiUrl =  "https://admin.pueblosmagicosapp.com/public/app/pueblos_magicos";
+		this.apiUrl =  "https://admin.pueblosmagicosapp.com/app/pueblos_magicos";
 	}
 
 }

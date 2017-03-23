@@ -14,22 +14,20 @@ import { RestBase } from './rest-base';
 @Injectable()
 export class StateList extends RestBase {
 
-	servicePath : string;
-	
-
 	constructor(public http: Http) {
 		super();
-		this.servicePath = "/estados_region";
 		
 	}
 
 	loadStatesByActivity(activity:string): Observable<any> {
-		return this.http.get( this.apiUrl + this.servicePath + "/" + this.getActivityIdfForActivityNumber(activity))
+		let servicePath = "/estados_actividad";
+		return this.http.get( this.apiUrl + servicePath + "/" + this.getActivityIdfForActivityNumber(activity))
 	  		.map(res => res);
 	}
 
 	loadStatesByRegion(region:string): Observable<any> {
-		return this.http.get(this.apiUrl + this.servicePath + "/" + this.getRegionIdForRegionNumber(region))
+		let servicePath = "/estados_region";
+		return this.http.get(this.apiUrl + servicePath + "/" + this.getRegionIdForRegionNumber(region))
 	  		.map(res => res);
 	}
 

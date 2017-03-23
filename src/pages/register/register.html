@@ -33,7 +33,7 @@
 			    </ion-item>
 			    <ion-item>
 				    <ion-label>Estado</ion-label>
-				    <ion-select formControlName="estado">
+				    <ion-select formControlName="estado_id">
 					    <ion-option *ngFor="let state of stateArray" value="{{state.id}}">{{state.nombre}}</ion-option>
 					</ion-select>
 			    </ion-item>
@@ -43,7 +43,7 @@
 			    </ion-item>
 			    <ion-item>
 				    <ion-label>Género</ion-label>
-				    <ion-select formControlName="genero">
+				    <ion-select formControlName="genero_id">
 					    <ion-option value="1">Femenino</ion-option>
 					    <ion-option value="2">Masculino</ion-option>
 					</ion-select>

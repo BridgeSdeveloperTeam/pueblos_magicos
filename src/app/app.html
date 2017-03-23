@@ -2,8 +2,8 @@
 
   <ion-content no-bounce has-bouncing="false">
     <div class="user-info-container" tapable (click)="avatarClicked()">
-      <img [src]="user.imagen || './assets/img/photo_placeholder.png'">
-      <div text-wrap>{{user.nombre + " " +user.apellido }}</div>
+      <img [src]="getPhotoUrl() || './assets/img/photo_placeholder.png'">
+      <div text-wrap>{{getFullName()}}</div>
     </div>
     <ion-list no-lines>
       <button menuClose ion-item *ngFor="let page of pages" (click)="openPage(page)">

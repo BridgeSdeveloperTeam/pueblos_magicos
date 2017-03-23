@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, MenuController } from 'ionic-angular';
-import { StatusBar, Splashscreen, Camera, Crop, GoogleAnalytics, Push, Transfer } from 'ionic-native';
+import { Component, ViewChild, NgZone } from '@angular/core';
+import { Nav, Platform, MenuController, Events } from 'ionic-angular';
+import { StatusBar, Splashscreen, GoogleAnalytics } from 'ionic-native';
+import { Push, PushToken } from '@ionic/cloud-angular';
 
 import { LoginPage } from '../pages/login/login';
 import { CategoriesPage } from '../pages/categories/categories';
@@ -11,7 +12,7 @@ import { SectionAppearance } from '../providers/section-appearance';
 import { Favorites } from '../providers/favorites';
 import { ImagePath } from '../providers/image-path';
 import { RestUser } from '../providers/rest-user';
-
+import { CameraUpload } from '../providers/camera-upload';
 
 import { User } from '../models/user';
 
@@ -23,12 +24,12 @@ import { User } from '../models/user';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any;
 
   pages: Array<{title: string, icon: string, component: any}>;
   user: User;
 
-  constructor(public platform: Platform, public menu: MenuController, public favorites: Favorites, public restUser: RestUser) {
+  constructor(public platform: Platform, public menu: MenuController, public favorites: Favorites, public restUser: RestUser, public events: Events, private imagePath:ImagePath, private cameraUpload:CameraUpload, private zone: NgZone, private push:Push) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -39,16 +40,34 @@ export class MyApp {
       { title: 'Mis Lugares Favoritos', icon: "./assets/img/MenuIcons/icon_heart.png", component: TownListPage },
       { title: 'Cerrar Sesión', icon: "./assets/img/MenuIcons/icon_settings.png", component: LoginPage }
     ];
+    this.user = new User();
 
-    this.user = <User>{
-      nombre: "Juan",
-      apellido: "Ramos De La Cruz",
-      imagen: "",
-      correo: "",
-      estado: "",
-      edad: 32,
-      genero: "M"
-    };
+    this.restUser.getUserPromise().then((val) => {
+      if(val != null) {
+        this.user = <User>val;
+  
+        if(parseInt(this.user.id) > 0) {
+          this.rootPage = CategoriesPage;
+          this.favorites.getFavoritesRest(this.user.id);
+          this.restUser.logId(this.user.id);
+        }else {
+          this.rootPage = LoginPage;
+        }
+      }else {
+        this.rootPage = LoginPage;
+      }
+    });
+
+    this.events.subscribe('user:loggedIn', currentUser => {
+          this.user = currentUser;
+    });
+
+    this.events.subscribe('user:pictureChanged', photoUrl => {
+      //Photo didn't update without this
+      this.zone.run(() => {
+        this.user.foto_perfil = photoUrl; 
+      });
+    });
 
     this.menu.swipeEnable(false);
 
@@ -63,71 +82,49 @@ export class MyApp {
 
       GoogleAnalytics.startTrackerWithId('UA-90564283-1')
       .then(() => {
-        console.log('Google analytics is ready now');
-        GoogleAnalytics.trackView("Login");
+        
        // Tracker is ready
        // You can now track pages or set additional information such as AppVersion or UserId
       })
       .catch(e => console.log('Error starting GoogleAnalytics', e));
 
-      Push.init({
-      android: {
-             senderID: '72637084292'
-         },
-         ios: {
-             alert: 'true',
-             badge: true,
-             sound: 'false'
-         },
-         windows: {}
+      
+      this.push.register().then((t: PushToken) => {
+        return this.push.saveToken(t);
+      }).then((t: PushToken) => {
+
       });
     });
+  }
+
+  getPhotoUrl(){
+    if(this.user.foto_perfil && this.user.foto_perfil.length>0) {
+      //Server
+      if(this.user.foto_perfil.indexOf("img") >=0) {
+        return this.imagePath.getFullPath(this.user.foto_perfil);
+      }else {
+        return this.user.foto_perfil;
+      }
+      
+    }else {
+      //Default
+      return './assets/img/photo_placeholder.png';
+    }
+  }
+
+  getFullName() {
+    return this.user.nombre + " " + this.user.apellido;
   }
 
   avatarClicked() {
-     var options = {
-        destinationType: Camera.DestinationType.FILE_URI,
-        // In this app, dynamically set the picture source, Camera or photo gallery
-        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        encodingType: Camera.EncodingType.JPEG,
-        mediaType: Camera.MediaType.PICTURE,
-        allowEdit: false,
-        correctOrientation: true  //Corrects Android orientation quirks
-    };
-    Camera.getPicture(options).then((imageData) => {
-
-      Crop.crop( imageData ,{quality: 50}).then((newImage) => {
-          this.user.imagen = newImage;
-          let registeredUser = this.restUser.getUser();
-
-          var options = {
-            fileKey: "file",
-            fileName: "photo"+ registeredUser.id +".jpg",
-            chunkedMode: false,
-            mimeType: "multipart/form-data",
-            params : {'id': registeredUser.id}
-          };
-          
-          this.restUser.savePhotoUrl(newImage);
-          let fileTransfer = new Transfer();
-
-          fileTransfer.upload(newImage, "http://admin.pueblosmagicosapp.com/public/app/usuario/cargar_imagen", options).then(data => {
-            console.log(data);
-          }, err => {
-            console.log(err);
-          });
-
-        }, (error) => {
-          console.error("Error cropping image", error) 
-      });
-     
-    }, (err) => {
-     // Handle error
-     console.log(err);
-    });
+     this.cameraUpload.selectPictureAndUpload();
   }
 
   openPage(page) {
+    if(page.component == LoginPage) {
+      this.restUser.clearStorage();
+    }
+
     if(page.component == TownListPage) {
       GoogleAnalytics.trackView("Favoritos");
       let townList = this.favorites.getFavorites();
@@ -137,8 +134,6 @@ export class MyApp {
     }else {
       this.nav.setRoot(page.component);
     }
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     
   }
 

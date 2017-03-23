@@ -9,7 +9,10 @@ import { ImagePath } from '../../providers/image-path';
 import { GoogleAnalytics } from 'ionic-native';
 
 import { TownDetails } from '../../models/town-details';
+import { Company } from '../../models/company';
 import { ColoredSection } from '../../models/colored-section';
+
+import { CompaniesPage } from '../companies/companies';
 
 /*
   Generated class for the TownTemplate page.
@@ -21,7 +24,7 @@ import { ColoredSection } from '../../models/colored-section';
   selector: 'page-town-template',
   templateUrl: 'town-template.html'
 })
-export class TownTemplatePage extends ColoredSection{
+export class TownTemplatePage extends ColoredSection {
 
 	sectionInfo: Array<Object>;
 	activeFav: string;
@@ -42,6 +45,7 @@ export class TownTemplatePage extends ColoredSection{
 
 	ionViewWillEnter() {
 		this.isFav = this.favorites.isFavorite(this.townDetails);
+
 		let elements = document.getElementsByClassName('item-inner');
 		for(var i=0;i<elements.length;i++) {
 			let element = <HTMLElement>elements[i];
@@ -62,5 +66,20 @@ export class TownTemplatePage extends ColoredSection{
 		this.navCtrl.parent.viewCtrl.instance.goBack();
 	}
 
+	moreTapped(info) {
+		let companies: Company[] = info.empresas;
+		if(companies !== null) {
+			this.navCtrl.push(CompaniesPage, {companies});
+			GoogleAnalytics.trackView('Empresas');
+		}
+	}
+
+	checkCompanies(info) {
+		if(info.empresas && info.empresas.length>0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 }

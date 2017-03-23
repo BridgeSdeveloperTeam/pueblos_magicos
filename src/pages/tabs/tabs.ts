@@ -5,11 +5,14 @@ import { TownTemplatePage } from '../town-template/town-template';
 
 import { SectionAppearance } from '../../providers/section-appearance';
 import { Favorites } from '../../providers/favorites';
+import { RestUser } from '../../providers/rest-user';
 
 import { ColoredSection } from '../../models/colored-section';
 import { TownDetails } from '../../models/town-details';
+import { User } from '../../models/user';
 
 import { GoogleAnalytics } from 'ionic-native';
+
 
 /*
   Generated class for the Tabs tabs.
@@ -28,6 +31,7 @@ export class TabsPage extends ColoredSection {
   tab3Root: any = TownTemplatePage;
   tab4Root: any = TownTemplatePage;
   tab5Root: any = TownTemplatePage;
+  user: User;
 
   townDetails: TownDetails;
   whatToDo: Array<Object>;
@@ -36,7 +40,7 @@ export class TabsPage extends ColoredSection {
   featured: Array<Object>;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private favorites: Favorites)  {
+  constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private favorites: Favorites, private restUser:RestUser)  {
     super(navCtrl,navParams,sectionAppearance);
     
     this.townDetails = <TownDetails>navParams.get("townDetails");
@@ -44,16 +48,17 @@ export class TabsPage extends ColoredSection {
     this.history = this.townDetails.historia;
     this.festivities = this.townDetails.festividades;
     this.featured = this.townDetails.recomendado;
+    this.user = this.restUser.getUser();
 
   }
 
   public favoriteButtonTapped(add) {
     if(add) {
-      this.favorites.setFavorite(this.townDetails);
+      this.favorites.setFavorite(this.townDetails, this.user.id).subscribe(response=>{});
       GoogleAnalytics.trackEvent("Favoritos", "Tap", this.townDetails.nombre);
     }else {
       GoogleAnalytics.trackEvent("Remover Favoritos", "Tap", this.townDetails.nombre);
-      this.favorites.removeFavorite(this.townDetails);
+      this.favorites.removeFavorite(this.townDetails, this.user.id).subscribe(response=>{});
     }
     
   } 

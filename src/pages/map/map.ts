@@ -11,6 +11,7 @@ import {
  GoogleMapsEvent,
  GoogleMapsLatLng,
  GoogleMapsMarkerOptions,
+ GoogleMapsMarker,
  GoogleAnalytics
 } from 'ionic-native';
 
@@ -27,12 +28,13 @@ import {
 export class MapPage extends ColoredSection {
 
 	map: GoogleMap;
+	marker:GoogleMapsMarker;
 	townDetails: TownDetails;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, protected sectionAppearance: SectionAppearance, private platform: Platform) {
 		super(navCtrl,navParams,sectionAppearance);
 		this.townDetails = <TownDetails>navParams.get("townDetails");
-		
+			
 	}
 
 
@@ -43,33 +45,44 @@ export class MapPage extends ColoredSection {
 		}
 	}
 
+	ionViewWillLeave () {
+		this.marker.remove();
+		this.map.clear();
+	}
+
 	private loadMap() {
 		// create a new map by passing HTMLElement
-		let element: HTMLElement = document.getElementById('map');
 		
-		let latitude = parseFloat(this.townDetails.latitud);
-		let longitude = parseFloat(this.townDetails.longitud);
+		
+		var latitude = parseFloat(this.townDetails.latitud);
+		var longitude = parseFloat(this.townDetails.longitud);
+		var zoom = 15;
 		// create LatLng object	
+		if(isNaN(latitude) || isNaN(longitude)) {
+			latitude = 24.007678;
+			longitude = -102.523666;
+			zoom = 4;
+		}
+
 		let latLng: GoogleMapsLatLng = new GoogleMapsLatLng(latitude,longitude);
 		
-		this.map = new GoogleMap(element, {
-			'camera': {
-	            'latLng': latLng,
-	            'zoom': 15
-	        }
-        });
+		let element: HTMLElement = document.getElementById('map');
+		this.map = new GoogleMap(element);
 
-        this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
+		this.map.moveCamera({
+		  'target': latLng,
+		  'zoom': zoom,
+		});	
+
+        this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
             // create new marker
 			let markerOptions: GoogleMapsMarkerOptions = {
 				position: latLng
 			};
-			this.map.addMarker(markerOptions);
+			this.map.addMarker(markerOptions).then((newMarker: GoogleMapsMarker) => {
+		      this.marker = newMarker;
+		    });
     	});	
-		
-		console.log(latLng);
-
-		
 
 		
 	}

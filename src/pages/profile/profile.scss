@@ -8,8 +8,9 @@ page-profile {
 	.user-info-container {
 		height: 170px;
 		padding: 20px 5px;
+		background-color:color($colors, transparent);
 	}
-
+	
 	.user-info-container img {
 		width:120px;
 		height: 120px;

@@ -6,6 +6,7 @@ export interface TownDetails {
 	latitud: string;
 	longitud: string;
 	galería: Array<string>;
+	splashart: string;
 
 	queHacer: Array<Object>;
 	historia: Array<Object>;

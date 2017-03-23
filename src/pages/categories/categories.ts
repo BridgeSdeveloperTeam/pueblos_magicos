@@ -3,13 +3,15 @@ import { NavController, NavParams, AlertController, LoadingController } from 'io
 import { GoogleAnalytics } from 'ionic-native';
 
 import { State } from '../../models/state';
+import { User } from '../../models/user';
 
 import { StateList } from '../../providers/state-list';
 import { SectionAppearance } from '../../providers/section-appearance';
-import { RestUser } from '../../providers/rest-user';
 
 import { StateListPage } from '../state-list/state-list';
 import { SearchPage } from '../search/search';
+
+
 
 /*
   Generated class for the Categories page.
@@ -27,8 +29,9 @@ export class CategoriesPage {
 	segmentModel: string;
 	showingActivities: boolean;
 	loading: any;
+	user: User;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private stateList: StateList, private sectionAppearance: SectionAppearance, public alertCtrl: AlertController, public loadingCtrl: LoadingController, private restUser:RestUser) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, private stateList: StateList, private sectionAppearance: SectionAppearance, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 
 		if(this.navParams.get("regiones") === true) {
 			this.segmentModel = "regiones";
@@ -40,8 +43,6 @@ export class CategoriesPage {
 			this.showingActivities = true;
 			
 		}
-		console.log("categories");
-		console.log(this.restUser.getUser());
 
 	}
 
@@ -85,7 +86,6 @@ export class CategoriesPage {
 		});
 		this.loading.present();
 		this.stateList.loadStatesByRegion(number).subscribe(response => {
-			
 			this.sectionAppearance.setAppearanceForRegion(number);
 			let states = this.handleResponse(response);
 	      	this.showStates(states);

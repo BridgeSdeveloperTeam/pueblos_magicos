@@ -14,7 +14,7 @@ export class ImagePath {
 	baseUrl: string
 
 	constructor(public http: Http) {
-		this.baseUrl = "https://admin.pueblosmagicosapp.com/public/";
+		this.baseUrl = "https://admin.pueblosmagicosapp.com/";
 	}
 
 	getFullPath(imagePath):string {

@@ -11,4 +11,16 @@ page-town-template {
 	button {
 		box-shadow:none !important;
 	}
+	
+	.gallery-container {
+		text-align:right;
+	}
+
+	.gallery-container img {
+		height:40px;
+	}
+
+	.more-margin {
+		margin-bottom: 1rem;
+	}
 }

@@ -35,8 +35,8 @@
 
 	<div padding>
 		<h2>{{townDetails.nombre}}</h2>
-		<div>{{townDetails.descripcion}}</div>
-		<div class="gallery-container" tappable (click)="galleryTapped()">
+		<div class="more-margin">{{townDetails.descripcion}}</div>
+		<div class="gallery-container" tappable (click)="galleryTapped()" *ngIf="showGallery">
 			<img src="./assets/img/verfotos.png">
 		</div>
 		<div class="separator" [style.background-color]="dividerColor"></div>

@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler, Injector } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -14,6 +15,8 @@ import { SearchPage } from '../pages/search/search';
 import { GalleryPage } from '../pages/gallery/gallery';
 import { ProfilePage } from '../pages/profile/profile';
 import { MapPage } from '../pages/map/map';
+import { TownSplashPage } from '../pages/town-splash/town-splash';
+import { CompaniesPage } from '../pages/companies/companies';
 
 import { StateList } from '../providers/state-list';
 import { SectionAppearance } from '../providers/section-appearance';
@@ -21,8 +24,27 @@ import { TownInfo } from '../providers/town-info';
 import { Favorites } from '../providers/favorites';
 import { ImagePath } from '../providers/image-path';
 import { RestUser } from '../providers/rest-user';
+import { CameraUpload } from '../providers/camera-upload';
 
 import { ServiceLocator } from '../models/service-locator';
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '488771c4'
+  },
+  'push': {
+    'sender_id': '72637084292',
+    'pluginConfig': {
+      'ios': {
+        'badge': true,
+        'sound': true
+      },
+      'android': {
+       
+      }
+    }
+  }
+};
 
 @NgModule({
   declarations: [
@@ -38,14 +60,17 @@ import { ServiceLocator } from '../models/service-locator';
     SearchPage,
     GalleryPage,
     ProfilePage,
-    MapPage
+    MapPage,
+    TownSplashPage,
+    CompaniesPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       tabsPlacement: 'bottom',
-    }, {}
-  )],
+    }, {}),
+    CloudModule.forRoot(cloudSettings)
+  ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -60,7 +85,9 @@ import { ServiceLocator } from '../models/service-locator';
     SearchPage,
     GalleryPage,
     ProfilePage,
-    MapPage
+    MapPage,
+    TownSplashPage,
+    CompaniesPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler },
     StateList,
@@ -68,7 +95,8 @@ import { ServiceLocator } from '../models/service-locator';
     TownInfo,
     Favorites,
     ImagePath,
-    RestUser
+    RestUser,
+    CameraUpload
     ]
 })
 export class AppModule {

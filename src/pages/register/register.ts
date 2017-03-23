@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { GoogleAnalytics } from 'ionic-native';
@@ -25,9 +25,10 @@ export class RegisterPage {
 
 	stateArray: Array<any>;
 	user:FormGroup;
+	loading:any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private stateList: StateList, private formBuilder: FormBuilder, private alertCtrl:AlertController, private restUser:RestUser) {
-		stateList.getStateNames().subscribe(res => {
+	constructor(public navCtrl: NavController, public navParams: NavParams, private stateList: StateList, private formBuilder: FormBuilder, private alertCtrl:AlertController, private restUser:RestUser, private loadingCtrl:LoadingController) {
+		this.stateList.getStateNames().subscribe(res => {
 			this.stateArray = <any[]>res.json().estados;
 		});
 
@@ -35,9 +36,9 @@ export class RegisterPage {
 			nombre: ['', Validators.required],
 	    	apellido: ['', Validators.required],				 
 	    	correo: ['', Validators.compose([Validators.required, GlobalValidator.mailFormat])],
-	    	estado: ['', Validators.required],
+	    	estado_id: ['', Validators.required],
 	    	edad: ['', Validators.required],
-	    	genero: ['', Validators.required],
+	    	genero_id: ['', Validators.required],
 	    	password: ['', Validators.required],
 	    	repeatedPassword: ['', Validators.required]
 
@@ -53,8 +54,10 @@ export class RegisterPage {
 			if(this.user.value.password !== this.user.value.repeatedPassword) {
 				this.presentAlert("Advertencia", "Las contraseñas no coinciden.");
 			}else {
+				this.presentLoading();
 				this.restUser.registerUser(<User>this.user.value).subscribe(
 				(response)=> {
+					this.dismissLoading();
 					//response.json() will be the id if new user
 					//response.json() will be 0 if email is already registered
 					let userId = response.json();
@@ -62,8 +65,6 @@ export class RegisterPage {
 						this.presentAlert("Error", "El correo electrónico ya se encuentra registrado.");
 					}else {
 						this.user.value.id = userId;
-						console.log("saving");
-						console.log(this.user.value);
 
 						var newUser = this.user.value;
 						delete newUser.password;
@@ -73,12 +74,25 @@ export class RegisterPage {
 					}
 					
 				}, (error) => {
+					this.dismissLoading();
 					console.log(error);
+					this.presentAlert("Error", "Favor de intentarlo mas tarde.");
 				});	
 			}
 		}else {
 			this.presentAlert("Advertencia", "Favor de llenar todos los campos correctamente.");
 		}
+	}
+
+	private presentLoading() {
+		this.loading = this.loadingCtrl.create({
+		  content:''
+		});
+		this.loading.present();
+	}
+
+	private dismissLoading() {
+		this.loading.dismiss().catch(() => {});
 	}
 
 	private presentAlert(title, message) {
