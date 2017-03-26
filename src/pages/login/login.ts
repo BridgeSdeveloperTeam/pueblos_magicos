@@ -117,7 +117,7 @@ export class LoginPage {
           this.presentLoading();
           this.restUser.registerUserSocial(firstName, lastName, email).subscribe(
             (res)=> {
-    
+              console.log(res);
               this.dismissLoading();
            
               let user = <User>res.json();
@@ -125,6 +125,7 @@ export class LoginPage {
               //some fields may be null
             },
             (error) => {
+              console.log(error);
               this.dismissLoading();
               this.presentAlert("Error", "Favor de intentarlo más tarde.");
             }
@@ -142,7 +143,6 @@ export class LoginPage {
     GoogleAnalytics.trackEvent("Social", "Tap", "Google");
     GooglePlus.login({})
     .then((res) => {
-      this.navCtrl.setRoot(CategoriesPage);
       let nameArray = res.displayName.split(" ");
       var firstName;
       var lastName;
@@ -160,9 +160,12 @@ export class LoginPage {
       this.restUser.registerUserSocial(firstName, lastName, email).subscribe(
         (response)=> {
           this.dismissLoading();
-       
+          console.log(response);
+          
           let user = <User>response.json();
+          console.log(user);
           this.processSocialResponse(user);
+
           //some fields may be null
         },
         (error) => {

@@ -51,7 +51,7 @@ export class CameraUpload {
 	          
 	          let fileTransfer = new Transfer();
 
-	          fileTransfer.upload(newImage, "http://admin.pueblosmagicosapp.com/app/usuario/cargar_imagen", options).then(data => {
+	          fileTransfer.upload(newImage, "https://admin.pueblosmagicosapp.com/app/usuario/cargar_imagen", options).then(data => {
 	            this.restUser.savePhotoUrl(data["response"]);
 	            this.events.publish('user:pictureChanged', newImage);
 	            this.loading.dismiss().catch(() => {});

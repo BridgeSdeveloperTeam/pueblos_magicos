@@ -68,8 +68,8 @@
         <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
     </feature>
     <name>Pueblos Magicos</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <description>Aplicación para visualizar los Pueblos Mágicos de México.</description>
+    <author email="contacto@bridgestudio.mx" href="http://bridgestudio.mx/">Bridge Studios Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -109,4 +109,5 @@
     <preference name="Orientation" value="portrait" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="target-device" value="handset" />
 </widget>
