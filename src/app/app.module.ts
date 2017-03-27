@@ -25,6 +25,7 @@ import { Favorites } from '../providers/favorites';
 import { ImagePath } from '../providers/image-path';
 import { RestUser } from '../providers/rest-user';
 import { CameraUpload } from '../providers/camera-upload';
+import { GoogleDirections } from '../providers/google-directions';
 
 import { ServiceLocator } from '../models/service-locator';
 
@@ -96,7 +97,8 @@ const cloudSettings: CloudSettings = {
     Favorites,
     ImagePath,
     RestUser,
-    CameraUpload
+    CameraUpload,
+    GoogleDirections
     ]
 })
 export class AppModule {

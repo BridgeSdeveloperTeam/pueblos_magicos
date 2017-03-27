@@ -54,6 +54,9 @@
         },
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
         }
     },
     "dependent_plugins": {

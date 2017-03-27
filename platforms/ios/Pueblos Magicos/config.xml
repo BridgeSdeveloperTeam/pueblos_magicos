@@ -104,6 +104,9 @@
     <feature name="FileTransfer">
         <param name="ios-package" value="CDVFileTransfer" />
     </feature>
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
     <name>Pueblos Magicos</name>
     <description>Aplicación para visualizar los Pueblos Mágicos de México.</description>
     <author email="contacto@bridgestudio.mx" href="http://bridgestudio.mx/">Bridge Studios Team</author>

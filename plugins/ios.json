@@ -59,6 +59,10 @@
         },
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": "Pueblos Mágicos solicita tu ubicación solamente para el trazado de rutas.",
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
         }
     },
     "dependent_plugins": {

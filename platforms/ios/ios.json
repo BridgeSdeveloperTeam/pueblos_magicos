@@ -147,6 +147,10 @@
                         {
                             "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -172,6 +176,10 @@
                         },
                         {
                             "xml": "<string>$NSLocationWhenInUseUsageDescription</string>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<string>Pueblos Mágicos solicita tu ubicación solamente para el trazado de rutas.</string>",
                             "count": 1
                         }
                     ],
@@ -302,6 +310,10 @@
             "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
         },
         "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
+        },
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": "Pueblos Mágicos solicita tu ubicación solamente para el trazado de rutas.",
             "PACKAGE_NAME": "com.bridgest.pueblosMagicos"
         }
     },
@@ -633,6 +645,38 @@
             "clobbers": [
                 "window.FileTransfer"
             ]
+        },
+        {
+            "id": "cordova-plugin-geolocation.Coordinates",
+            "file": "plugins/cordova-plugin-geolocation/www/Coordinates.js",
+            "pluginId": "cordova-plugin-geolocation",
+            "clobbers": [
+                "Coordinates"
+            ]
+        },
+        {
+            "id": "cordova-plugin-geolocation.PositionError",
+            "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+            "pluginId": "cordova-plugin-geolocation",
+            "clobbers": [
+                "PositionError"
+            ]
+        },
+        {
+            "id": "cordova-plugin-geolocation.Position",
+            "file": "plugins/cordova-plugin-geolocation/www/Position.js",
+            "pluginId": "cordova-plugin-geolocation",
+            "clobbers": [
+                "Position"
+            ]
+        },
+        {
+            "id": "cordova-plugin-geolocation.geolocation",
+            "file": "plugins/cordova-plugin-geolocation/www/geolocation.js",
+            "pluginId": "cordova-plugin-geolocation",
+            "clobbers": [
+                "navigator.geolocation"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -653,6 +697,7 @@
         "ionic-plugin-keyboard": "2.2.1",
         "phonegap-plugin-push": "1.4.5",
         "cordova-plugin-file": "4.3.1",
-        "cordova-plugin-file-transfer": "1.6.1"
+        "cordova-plugin-file-transfer": "1.6.1",
+        "cordova-plugin-geolocation": "2.4.2"
     }
 }

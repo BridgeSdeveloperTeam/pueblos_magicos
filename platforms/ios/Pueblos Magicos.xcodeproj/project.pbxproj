@@ -94,6 +94,7 @@
 		F8CB8A69A31A4AD0B0C30DF2 /* External.m in Sources */ = {isa = PBXBuildFile; fileRef = 382D708839E04779ABCADCF7 /* External.m */; };
 		FE2475A8EFC54CF283819AD4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7931B9BB467F41B08119959D /* UIKit.framework */; };
 		FFE3952B92E942898CDED624 /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 642089D4203A4AA8B15B0B70 /* PEResizeControl.m */; };
+		08490BF5CDFB49348FEAC7EE /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 218BE0E5441C4B0C8F48937A /* CDVLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,6 +274,8 @@
 		F7C18DB51369487DA923DD23 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pueblos Magicos/Plugins/cordova-plugin-facebook4/Bolts.framework"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Pueblos Magicos/config.xml"; sourceTree = "<group>"; };
 		FB85D1391EE9417DB4329C3D /* Accelerate.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		218BE0E5441C4B0C8F48937A /* CDVLocation.m */ = {isa = PBXFileReference; name = "CDVLocation.m"; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		ABC423CE760941FA9F5F126D /* CDVLocation.h */ = {isa = PBXFileReference; name = "CDVLocation.h"; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -549,6 +552,8 @@
 				19930CC48CDA4F1EA486910A /* CDVAssetLibraryFilesystem.h */,
 				CFA7C36BCE4F4622BC0F205D /* CDVFileTransfer.m */,
 				1DC3C5442AEC413E8F1E9FF0 /* CDVFileTransfer.h */,
+				218BE0E5441C4B0C8F48937A /* CDVLocation.m */,
+				ABC423CE760941FA9F5F126D /* CDVLocation.h */,
 			);
 			name = Plugins;
 			path = "Pueblos Magicos/Plugins";
@@ -722,6 +727,7 @@
 				ABA5F6E6DC9D4C4B86083749 /* CDVLocalFilesystem.m in Sources */,
 				8258EAB02A504A08814361E5 /* CDVAssetLibraryFilesystem.m in Sources */,
 				8BA53AF179234B09BFFF8B0D /* CDVFileTransfer.m in Sources */,
+				08490BF5CDFB49348FEAC7EE /* CDVLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

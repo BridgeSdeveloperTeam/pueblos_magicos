@@ -1,7 +1,7 @@
 {
     "Accelerate.framework": 1,
     "CoreData.framework": 2,
-    "CoreLocation.framework": 2,
+    "CoreLocation.framework": 3,
     "CoreText.framework": 2,
     "GLKit.framework": 1,
     "ImageIO.framework": 2,

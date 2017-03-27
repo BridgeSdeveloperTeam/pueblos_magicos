@@ -75,7 +75,7 @@
     <key>NSPhotoLibraryUsageDescription</key>
     <string>Pueblos Mágicos desea obtener permiso para acceder a la galería de fotos para actualizar su foto de perfil.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>$NSLocationWhenInUseUsageDescription</string>
+    <string>Pueblos Mágicos solicita tu ubicación solamente para el trazado de rutas.</string>
     <key>FacebookAppID</key>
     <string>148862198951838</string>
     <key>FacebookDisplayName</key>
