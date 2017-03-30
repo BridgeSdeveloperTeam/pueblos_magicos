@@ -30,8 +30,10 @@
 </ion-header>
 
 <ion-content>
-
-	<img [src]="imagePath.getFullPath(townDetails.imagen)">
+	<div class="center">
+		<img [src]="imagePath.getFullPath(townDetails.imagen)">
+	</div>
+	
 
 	<div padding>
 		<h2>{{townDetails.nombre}}</h2>

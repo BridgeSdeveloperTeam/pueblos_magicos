@@ -16,7 +16,9 @@
     </ion-buttons>
   </ion-navbar>
   <ion-toolbar no-padding>
-  	<img [src]="sectionImage">
+    <div class="center">
+  	 <img [src]="sectionImage">
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -24,7 +26,10 @@
 	
 	<ion-list>
 		<ion-item *ngFor="let state of states" (click)="stateSelected(state)">
-			<img [src]="imagePath.getFullPath(state.imagen)">
+      <div class="center">
+        <img [src]="imagePath.getFullPath(state.imagen)">
+      </div>
+			
 			<h2>{{state.nombre}}</h2>
 		</ion-item>  
 	</ion-list>

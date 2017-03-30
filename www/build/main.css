@@ -39025,6 +39025,10 @@ page-categories .custom-toolbar {
   min-height: 42px !important;
 }
 
+page-categories .center {
+  text-align: center;
+}
+
 page-companies .item-inner, page-companies .no-padding {
   padding: 0;
 }
@@ -39068,6 +39072,10 @@ page-landing .gallery-container img {
 
 page-landing .more-margin {
   margin-bottom: 1rem;
+}
+
+page-landing .center {
+  text-align: center;
 }
 
 page-login .content {
@@ -39179,6 +39187,10 @@ page-register .empty-item {
 
 page-register .item-md.item-select {
   padding-left: 0px;
+}
+
+page-state-list .center {
+  text-align: center;
 }
 
 page-tabs .ion-logo-bitcoin:before {

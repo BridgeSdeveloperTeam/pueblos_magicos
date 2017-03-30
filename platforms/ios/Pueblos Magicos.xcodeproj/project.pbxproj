@@ -13,6 +13,7 @@
 		06459128424F4ED09EC10350 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 22002013AA9348E99E5C7571 /* CDVSplashScreen.m */; };
 		067131B87ADB449582F8A2B2 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB700B3B93E47B4BD1E5775 /* CDVDevice.m */; };
 		0805BCAB0B554541BEACD6FB /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B400901CBE425CA67279CE /* FacebookConnectPlugin.m */; };
+		08490BF5CDFB49348FEAC7EE /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 218BE0E5441C4B0C8F48937A /* CDVLocation.m */; };
 		0AAAA23A5A724BA6B86BC122 /* GoogleMaps.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A5BD87FCDF84E0BB1347ABC /* GoogleMaps.m */; };
 		182C9B897F274F6985EDB51F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AD0E62FF2746FC9DCECE24 /* AVFoundation.framework */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
@@ -94,7 +95,6 @@
 		F8CB8A69A31A4AD0B0C30DF2 /* External.m in Sources */ = {isa = PBXBuildFile; fileRef = 382D708839E04779ABCADCF7 /* External.m */; };
 		FE2475A8EFC54CF283819AD4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7931B9BB467F41B08119959D /* UIKit.framework */; };
 		FFE3952B92E942898CDED624 /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 642089D4203A4AA8B15B0B70 /* PEResizeControl.m */; };
-		08490BF5CDFB49348FEAC7EE /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 218BE0E5441C4B0C8F48937A /* CDVLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +136,7 @@
 		1DC3C5442AEC413E8F1E9FF0 /* CDVFileTransfer.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVFileTransfer.h; path = "cordova-plugin-file-transfer/CDVFileTransfer.h"; sourceTree = "<group>"; };
 		1EE56C67C42E409DB4EADB1B /* MyPluginLayer.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = MyPluginLayer.h; path = "cordova-plugin-googlemaps/MyPluginLayer.h"; sourceTree = "<group>"; };
 		2136C2285447428AAFF8DA1B /* CDVFile.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVFile.h; path = "cordova-plugin-file/CDVFile.h"; sourceTree = "<group>"; };
+		218BE0E5441C4B0C8F48937A /* CDVLocation.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVLocation.m; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; };
 		21D60AC2CBF845958EF918E5 /* GMSCoordinateBounds+Geometry.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "GMSCoordinateBounds+Geometry.m"; path = "cordova-plugin-googlemaps/GMSCoordinateBounds+Geometry.m"; sourceTree = "<group>"; };
 		22002013AA9348E99E5C7571 /* CDVSplashScreen.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVSplashScreen.m; path = "cordova-plugin-splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; };
 		276F8DAA0DB64A2AA7B8CC71 /* GroundOverlay.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = GroundOverlay.h; path = "cordova-plugin-googlemaps/GroundOverlay.h"; sourceTree = "<group>"; };
@@ -220,6 +221,7 @@
 		A52FEE3BABD84D0AA65919F0 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pueblos Magicos/Plugins/cordova-plugin-facebook4/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		A6548D4C1E51048700A9C31F /* Pueblos Magicos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "Pueblos Magicos.entitlements"; path = "Pueblos Magicos/Pueblos Magicos.entitlements"; sourceTree = "<group>"; };
 		A9DE2C93D59042A98890C2DB /* Marker.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = Marker.m; path = "cordova-plugin-googlemaps/Marker.m"; sourceTree = "<group>"; };
+		ABC423CE760941FA9F5F126D /* CDVLocation.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVLocation.h; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; };
 		B3F285D72207429291A2C72C /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B4A5F74E9BBD4E8AAB3DC684 /* CoreLocation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B6A14F9763394E6380FC78D7 /* CDVLogger.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVLogger.h; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; };
@@ -274,8 +276,6 @@
 		F7C18DB51369487DA923DD23 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pueblos Magicos/Plugins/cordova-plugin-facebook4/Bolts.framework"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Pueblos Magicos/config.xml"; sourceTree = "<group>"; };
 		FB85D1391EE9417DB4329C3D /* Accelerate.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		218BE0E5441C4B0C8F48937A /* CDVLocation.m */ = {isa = PBXFileReference; name = "CDVLocation.m"; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		ABC423CE760941FA9F5F126D /* CDVLocation.h */ = {isa = PBXFileReference; name = "CDVLocation.h"; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -787,7 +787,7 @@
 				);
 				PRODUCT_NAME = "Pueblos Magicos";
 				PROVISIONING_PROFILE_SPECIFIER = PueblosMagicosDev;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -834,7 +834,7 @@
 				);
 				PRODUCT_NAME = "Pueblos Magicos";
 				PROVISIONING_PROFILE_SPECIFIER = PueblosMagicosDev;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -862,7 +862,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -889,7 +889,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

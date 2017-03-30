@@ -35,7 +35,7 @@
 	<ion-list no-lines [hidden]="!showingActivities" no-bounce has-bouncing="false">
 		<ion-item *ngFor="let number of ['1','2','3','4','5'];let first = first;" no-padding (click)="activitySelected(number)" class="top-minus-margin" [class.first-item]="first">
 			<div class="row" style="padding:0;">
-				<div class="col">
+				<div class="col center">
 					<img src="./assets/img/Categories/actividad{{number}}.png">
 				</div>
 			</div>	
@@ -46,7 +46,7 @@
 		<ion-item *ngFor="let number of ['1','2','3','4','5'];let first = first;" no-padding (click)="regionSelected(number)" 
 		class="top-minus-margin" [class.first-item]="first">
 			<div class="row" style="padding:0;">
-				<div class="col">
+				<div class="col center">
 					<img src="./assets/img/Categories/region{{number}}.png">
 				</div>
 			</div>
